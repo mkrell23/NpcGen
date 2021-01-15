@@ -2,7 +2,7 @@
   "name": "npcgen",
   "version": "1.0.0",
   "description": "Generates NPC characters for D&D",
-  "main": "app.js",
+  "main": "js/app.js",
   "scripts": {
     "test": "mocha"
   },
