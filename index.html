@@ -3,20 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title id="title">NPC Generator</title>
     <link rel="stylesheet" href="css/output.css">
-    <!-- <link href="https://rawgithub.com/nternetinspired/debug-css/master/debug.css" media="all" rel="stylesheet" type="text/css" /> -->
+    <link href="https://rawgithub.com/nternetinspired/debug-css/master/debug.css" media="all" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
-    <div  class="font-serif ">
-        <form id="charForm">
+    <div id="header" class="relative bg-green-500 max-w-7x1 px-4 sm:px-6 h-8 w-full border-5 border-blue-500 rounded-sm justify-items-center">
+        <div class="text-white justify-items-center">
+            NPC Generator
+        </div>
+    </div>
+    <div  id="charForm" class="font-serif border-8 rounded-3x1 ">
+        <form>
             <label for="charName" >Character Name
-                <input type="text" name="charName" id="charName" class="border border-6 border-red-500">
+                <input type="text" name="charName" id="charName" class="border border-6 border-red-500 rounded-full">
             </label>
-            <label for="charClass" class="text-red-800 ">
+            <label for="charClass" class="">
                 Character Class
-                <select name="charClass" id="charClass">
+                <select name="charClass" id="charClass" required>
+                    <option value="selectOne" disabled selected>Select a Class</option>
                     <option value="barbarian">Barbarian</option>
                     <option value="rogue">Rogue</option>
                     <option value="wizard">Wizard</option>
