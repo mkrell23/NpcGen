@@ -1,0 +1,32 @@
+General Program Flow:
+
+* Get input from user:
+    (class, race, level, optional name, optional prestige)
+
+* Search API for class/prestige at level
+* Find Spells for class at level
+* Find race traits
+* Roll virtual dice to generate stats
+* Distribute stats in class-determined priority (highest stat for wizards is inteligence, but for barbarians it's strength, etc)
+* Combine everything into a character
+
+* Display character:
+    Base stats (able to rearange and reroll)
+    Spell selection available and amount usable
+    Race characterists and modifiers
+    Class/prestige abilities and modifiers (feats, etc available?)
+    All the other calculated bits for the character sheet that aren't narritive based
+
+* Save/Load Character
+
+* Add other levels to character?
+
+
+Need:
+
+* Figure out styling!
+* API calls
+* Character models/objects/methods
+* Virtual character sheet
+* Virtual dice 
+* Event handlers and page display

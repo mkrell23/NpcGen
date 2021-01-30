@@ -1,6 +1,6 @@
 {
   "name": "npcgen",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Generates NPC characters for D&D",
   "main": "js/app.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/mkrell23/NpcGen.git"
   },
   "author": "M Krell",
-  "license": "ISC",
+  "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/mkrell23/NpcGen/issues"
   },
@@ -20,5 +20,9 @@
     "autoprefixer": "^10.2.1",
     "postcss": "^8.2.4",
     "tailwindcss": "^2.0.2"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1"
   }
 }
