@@ -1,1 +1,5 @@
-console.log("hello world!")
+
+const barbarian = searchApi('classes/druid')
+    .then(data => console.log(data));
+
+;
