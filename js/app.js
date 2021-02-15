@@ -1,6 +1,7 @@
 const charName = document.getElementById('charName');
 const submitButton = document.getElementById('submitButton');
 const charClass = document.getElementById('charClass');
+const charLevel = document.getElementById('charLevel');
 
 searchApi('classes')
     .then( data => data.results)
@@ -10,7 +11,7 @@ searchApi('classes')
                 const element = results[cName];      
                 const classOption = document.createElement('option');
                 classOption.label = element.name;
-                classOption.value = element.name;
+                classOption.value = element.name.toLowerCase();
                 classOption.text = element.name;
                 charClass.appendChild(classOption);
             }
@@ -19,5 +20,7 @@ searchApi('classes')
 
 submitButton.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log(charName.value);
+    console.log("Character name: " + charName.value);
+    console.log("Character class: " + charClass.value);
+    console.log("Character level: " + charLevel.value);
 });
