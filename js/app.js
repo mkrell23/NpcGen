@@ -7,8 +7,7 @@ searchApi('classes')
     .then( results => {
         for (const cName in results) {
             if (Object.hasOwnProperty.call(results, cName)) {
-                const element = results[cName];
-                console.log(element.name);          
+                const element = results[cName];      
                 const classOption = document.createElement('option');
                 classOption.label = element.name;
                 classOption.value = element.name;
