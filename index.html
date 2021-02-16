@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="title">NPC Generator</title>
     <link rel="stylesheet" href="css/output.css">
-    <link href="https://rawgithub.com/nternetinspired/debug-css/master/debug.css" media="all" rel="stylesheet" type="text/css" />
+    <!-- <link href="https://rawgithub.com/nternetinspired/debug-css/master/debug.css" media="all" rel="stylesheet" type="text/css" /> -->
 
 </head>
 <body>
@@ -14,24 +14,24 @@
             NPC Generator
         </div>
     </div>
-    <div  id="charForm" class="font-serif border-8 rounded-3x1 ">
+    <div  id="charForm" class="font-serif border border-6 rounded-3x1 ">
         <form>
             <label for="charName" >Character Name
-                <input type="text" name="charName" id="charName" class="border border-6 border-red-500 rounded-full">
+                <input type="text" name="charName" id="charName" class="border-2 border-grey-500 rounded-full">
             </label>
             <label for="charClass" class="">Character Class
-                <select name="charClass" id="charClass" required>
-                    <option value="selectOne" disabled selected>Select a Class</option>
+                <select name="charClass" id="charClass" required class="border-2 border-grey-500 rounded-full">
+                    <option value="selectOne" disabled selected >Select a Class</option>
                 </select>
             </label>
             <label for="charRace" class="">Character Race
-                <select name="charRace" id="charRace" required>
+                <select name="charRace" id="charRace" required class="border-2 border-grey-500 rounded-full">
                     <option value="selectOne" disabled selected>Select a Race</option>
                 </select>
             </label>
             <label for="charLevel">
                 Character Level
-                <select name="charLevel" id="charLevel">
+                <select name="charLevel" id="charLevel" class="border-2 border-grey-500 rounded-full">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -54,7 +54,7 @@
                     <option value="20">20</option>
                 </select>
             </label>
-            <input type="submit" value="Create Character" id="submitButton">
+            <input type="submit" value="Create Character" id="submitButton" class="bg-grey-100 text-black font-bold py-2 px-4 rounded border-2 border-grey-500 ">
         </form>
     </div>
     <!-- <script src="./js/fetch_methods.js"></script> -->
