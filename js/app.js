@@ -3,6 +3,23 @@ const submitButton = document.getElementById('submitButton');
 const charClass = document.getElementById('charClass');
 const charLevel = document.getElementById('charLevel');
 
+// FETCH METHODS GO HERE
+function searchApi(search){
+    return fetch('https://www.dnd5eapi.co/api/' + search)
+        .then(checkStatus)  
+        .then(response => response.json())
+        .catch(error => console.log('Looks like there was a problem!', error));
+};
+
+function checkStatus(response) {
+    if (response.ok) {
+      return Promise.resolve(response);
+    } else {
+      return Promise.reject(new Error(response.statusText));
+    }
+  }
+
+// POPULATE OUR CLASS LIST THE LAZY WAY
 searchApi('classes')
     .then( data => data.results)
     .then( results => {
