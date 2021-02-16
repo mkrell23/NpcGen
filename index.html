@@ -9,29 +9,23 @@
 
 </head>
 <body>
-    <div id="header" class="relative bg-green-500 max-w-7x1 px-4 sm:px-6 h-8 w-full border-5 border-blue-500 rounded-sm justify-items-center">
-        <div class="text-white justify-items-center">
-            NPC Generator
-        </div>
+    <div id="header" class="relative bg-green-500 max-w-7x1 px-4 sm:px-6 h-8 w-full border-5 border-blue-500 rounded-sm ">
+        <div class="container mx-auto text-white text-center">NPC Generator</div>
     </div>
-    <div  id="charForm" class="font-serif border border-6 rounded-3x1 ">
+    <div  id="charForm" class="font-serif border border-6 p-4 rounded-3x1 " >
         <form>
-            <label for="charName" >Character Name
-                <input type="text" name="charName" id="charName" class="border-2 border-grey-500 rounded-full">
+            <label for="charName" class="flow-root mx-auto p-2">Character Name <input type="text" name="charName" id="charName" class=" border-2 border-grey-500 rounded-full">
             </label>
-            <label for="charClass" class="">Character Class
-                <select name="charClass" id="charClass" required class="border-2 border-grey-500 rounded-full">
+            <label for="charClass" class="flow-root mx-auto p-2">Character Class <select name="charClass" id="charClass" required class="border-2 border-grey-500 rounded-full">
                     <option value="selectOne" disabled selected >Select a Class</option>
                 </select>
             </label>
-            <label for="charRace" class="">Character Race
-                <select name="charRace" id="charRace" required class="border-2 border-grey-500 rounded-full">
+            <label for="charRace" class="flow-root mx-auto p-2">Character Race <select name="charRace" id="charRace" required class="border-2 border-grey-500 rounded-full">
                     <option value="selectOne" disabled selected>Select a Race</option>
                 </select>
             </label>
-            <label for="charLevel">
-                Character Level
-                <select name="charLevel" id="charLevel" class="border-2 border-grey-500 rounded-full">
+            <label for="charLevel" class="flow-root mx-auto p-2">
+                Character Level <select name="charLevel" id="charLevel" class="border-2 border-grey-500 rounded-full">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
