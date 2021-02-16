@@ -2,6 +2,7 @@ const charName = document.getElementById('charName');
 const submitButton = document.getElementById('submitButton');
 const charClass = document.getElementById('charClass');
 const charLevel = document.getElementById('charLevel');
+const charRace = document.getElementById('charRace');
 
 // FETCH METHODS GO HERE
 function searchApi(search){
@@ -23,6 +24,22 @@ function checkStatus(response) {
 searchApi('classes')
     .then( data => data.results)
     .then( results => {
+        for (const rName in results) {
+            if (Object.hasOwnProperty.call(results, rName)) {
+                const element = results[rName];      
+                const raceOption = document.createElement('option');
+                raceOption.label = element.name;
+                raceOption.value = element.name.toLowerCase();
+                raceOption.text = element.name;
+                charRace.appendChild(raceOption);
+            }
+        }
+    });
+
+// POPULATE OUR RACE LIST THE LAZY WAY
+searchApi('races')
+    .then( data => data.results)
+    .then( results => {
         for (const cName in results) {
             if (Object.hasOwnProperty.call(results, cName)) {
                 const element = results[cName];      
@@ -38,6 +55,7 @@ searchApi('classes')
 submitButton.addEventListener('click', (e) => {
     e.preventDefault();
     console.log("Character name: " + charName.value);
+    console.log("Character race: " + charRace.value);
     console.log("Character class: " + charClass.value);
     console.log("Character level: " + charLevel.value);
 });
