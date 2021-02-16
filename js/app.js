@@ -4,7 +4,7 @@ const charClass = document.getElementById('charClass');
 const charLevel = document.getElementById('charLevel');
 const charRace = document.getElementById('charRace');
 
-// FETCH METHODS GO HERE
+// FETCH METHODS
 function searchApi(search){
     return fetch('https://www.dnd5eapi.co/api/' + search)
         .then(checkStatus)  
@@ -24,22 +24,6 @@ function checkStatus(response) {
 searchApi('classes')
     .then( data => data.results)
     .then( results => {
-        for (const rName in results) {
-            if (Object.hasOwnProperty.call(results, rName)) {
-                const element = results[rName];      
-                const raceOption = document.createElement('option');
-                raceOption.label = element.name;
-                raceOption.value = element.name.toLowerCase();
-                raceOption.text = element.name;
-                charRace.appendChild(raceOption);
-            }
-        }
-    });
-
-// POPULATE OUR RACE LIST THE LAZY WAY
-searchApi('races')
-    .then( data => data.results)
-    .then( results => {
         for (const cName in results) {
             if (Object.hasOwnProperty.call(results, cName)) {
                 const element = results[cName];      
@@ -48,6 +32,22 @@ searchApi('races')
                 classOption.value = element.name.toLowerCase();
                 classOption.text = element.name;
                 charClass.appendChild(classOption);
+            }
+        }
+    });
+
+// POPULATE OUR RACE LIST THE LAZY WAY
+searchApi('races')
+    .then( data => data.results)
+    .then( results => {     
+        for (const rName in results) {
+            if (Object.hasOwnProperty.call(results, rName)) {
+                const element = results[rName];      
+                const raceOption = document.createElement('option');
+                raceOption.label = element.name;
+                raceOption.value = element.name.toLowerCase();
+                raceOption.text = element.name;
+                charRace.appendChild(raceOption);
             }
         }
     });
