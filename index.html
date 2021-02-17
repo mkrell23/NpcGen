@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="title">NPC Generator</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/output.css">
     <!-- <link href="https://rawgithub.com/nternetinspired/debug-css/master/debug.css" media="all" rel="stylesheet" type="text/css" /> -->
 
 </head>
 <body>
-    <div id="header" class="relative bg-green-500 max-w-7x1 px-4 sm:px-6 h-8 w-full border-5 border-blue-500 rounded-sm ">
-        <div class="container mx-auto text-white text-center">NPC Generator</div>
+    <div id="header" class="relative bg-green-500 max-w-7x1 px-4 sm:px-6 h-8 md:h-12 w-full border-5 border-blue-500 rounded-sm ">
+        <p class="container mx-auto text-white text-left p-1 md:text-center md:p-2">NPC Generator</p>
     </div>
-    <div  id="charForm" class="font-serif border border-6 p-4 rounded-3x1 " >
-        <form>
-            <label for="charName" class="flow-root mx-auto p-2">Character Name <input type="text" name="charName" id="charName" class=" border-2 border-grey-500 rounded-full">
+        <form  id="charForm" class="font-serif border border-6 p-4 rounded-3x1 flex flex-wrap" >
+            <label for="charName" class="flow-root p-2 ">Character Name <input type="text" name="charName" id="charName" class=" border-2 border-grey-500 rounded-full">
             </label>
-            <label for="charClass" class="flow-root mx-auto p-2">Character Class <select name="charClass" id="charClass" required class="border-2 border-grey-500 rounded-full">
+            <label for="charClass" class="flow-root p-2 ">Character Class <select name="charClass" id="charClass" required class="border-2 border-grey-500 rounded-full">
                     <option value="selectOne" disabled selected >Select a Class</option>
                 </select>
             </label>
-            <label for="charRace" class="flow-root mx-auto p-2">Character Race <select name="charRace" id="charRace" required class="border-2 border-grey-500 rounded-full">
+            <label for="charRace" class="flow-root p-2 md:inline-block">Character Race <select name="charRace" id="charRace" required class="border-2 border-grey-500 rounded-full">
                     <option value="selectOne" disabled selected>Select a Race</option>
                 </select>
             </label>
-            <label for="charLevel" class="flow-root mx-auto p-2">
+            <label for="charLevel" class="flow-root p-2 md:inline-block">
                 Character Level <select name="charLevel" id="charLevel" class="border-2 border-grey-500 rounded-full">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -47,10 +47,9 @@
                     <option value="19">19</option>
                     <option value="20">20</option>
                 </select>
-            </label>
-            <input type="submit" value="Create Character" id="submitButton" class="bg-grey-100 text-black font-bold py-2 px-4 rounded border-2 border-grey-500 ">
+            </label></br>
+            <input type="submit" value="Create Character" id="submitButton" class="bg-grey-100 text-black font-bold py-2 px-4 rounded border-2 border-grey-500 md:mx-auto">
         </form>
-    </div>
     <!-- <script src="./js/fetch_methods.js"></script> -->
     <script src="./js/app.js"></script>
 </body>
