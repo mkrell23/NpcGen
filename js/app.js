@@ -20,6 +20,18 @@ function checkStatus(response) {
     }
   }
 
+// DICE METHODS
+const rollD = diceSides => Math.floor(Math.random() * diceSides) + 1;
+
+function statRoll() {
+    const rolls = [];
+    for (let i = 0; i < 4; i++) {
+        rolls.push(rollD(6)); 
+    };  
+    const lowest = Math.min(...rolls);
+    return rolls.filter(e => e)
+}; 
+
 // POPULATE OUR CLASS LIST THE LAZY WAY
 searchApi('classes')
     .then( data => data.results)
