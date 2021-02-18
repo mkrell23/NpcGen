@@ -7,8 +7,9 @@ This console app is intended to remove the tedium of creating NPCs for a campaig
 
 #### Projected Features and Use Flow
 
-1. Select desired base class
-    * Class determines base stats distribution, using the standard array of stats (15, 14, 13, 12, 10, 8) and allocating them according to the optimal use for class (ie. Wizards get strength of 8 while a fighter gets strength of 15, which is swapped for intelligence.)
+1. Select desired class
+    * Class determines stats distribution, allocating them according to the optimal use for class (ie. Wizards get strength of 8 while a fighter gets strength of 15, which is swapped for intelligence.)
+    * Rolls dice, and distributes them as above.
 2. Select desired race
     * Race adds certain bonuses and effects such as movement in a turn and abilities like darkvision.
 3. Add levels to character
@@ -16,4 +17,4 @@ This console app is intended to remove the tedium of creating NPCs for a campaig
 4. Save and load character
 5. Add more levels so the bad guy can make a comeback
 
-Currently only focusing on basic rule 5e races and classes with the intention to expand to supplemental books. Multiclass ability is also planned to be added.
+Currently only basic rule 5e races and classes due to copyright. Multiclass ability is planned to be added, as well as monster race characters.
