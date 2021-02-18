@@ -22,11 +22,8 @@ General Program Flow:
 * Add other levels to character?
 
 
-Need:
-
-* Figure out styling!
-* API calls
-* Character models/objects/methods
-* Virtual character sheet
-* Virtual dice 
-* Event handlers and page display
+NEXT:
+* Create character class
+* Populate character object from API calls and ability score rolls
+* Character display to user
+* (LOW PRIORITY) Add a subclass checkbox, blank to start, populated "onchange" from class selection
