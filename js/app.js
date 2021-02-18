@@ -5,6 +5,7 @@ const charLevel = document.getElementById('charLevel');
 const charRace = document.getElementById('charRace');
 
 // FETCH METHODS
+// BASIC API SEARCH:
 function searchApi(search){
     return fetch('https://www.dnd5eapi.co/api/' + search)
         .then(checkStatus)  
@@ -12,6 +13,7 @@ function searchApi(search){
         .catch(error => console.log('Looks like there was a problem!', error));
 };
 
+// BASIC RESPONSE CHECKING
 function checkStatus(response) {
     if (response.ok) {
       return Promise.resolve(response);
@@ -21,8 +23,12 @@ function checkStatus(response) {
   }
 
 // STAT GENERATION METHODS
-const rollD = diceSides => Math.floor(Math.random() * diceSides) + 1;
+// SIMPLE DICE ROLLER
+function rollD(diceSides) {
+    return Math.floor(Math.random() * diceSides) + 1
+};
 
+// RETURNS A TOTAL ROLL FOR ONE ABILITY SCORE
 function statRoll() {
     let rolls = [];
     for (let i = 0; i < 4; i++) {
@@ -32,12 +38,14 @@ function statRoll() {
     return addDice(rolls);
 }; 
 
+// REMOVES LOWEST NUMBER FROM ARRAY, RETURNS ARRAY SORTED LOW TO HIGH
 function removeLowest(rolls) {
     rolls.sort( (a, b) => a-b);
     rolls.shift();
     return rolls;
 };
 
+// ADDS ALL TOGETHER, RETURNS TOTAL
 function addDice(rolls) {
     let total = 0;
     for (let i = 0; i < rolls.length; i++) {
@@ -47,6 +55,7 @@ function addDice(rolls) {
     return total
 };
 
+// RETURNS A SET OF 6 ABILITY SCORES FOR A CHARACTER, SORTED HIGHEST TO LOWEST
 function rollCharacter() {
     let stats = [];
     for (let i = 0; i < 6; i++) {
@@ -55,7 +64,8 @@ function rollCharacter() {
     return stats.sort( (a, b) => b - a);
 };
 
-// POPULATE OUR CLASS LIST THE LAZY WAY
+// POPULATE OUR INPUT LISTS THE LAZY WAY
+// CLASSES:
 searchApi('classes')
     .then( data => data.results)
     .then( results => {
@@ -71,7 +81,7 @@ searchApi('classes')
         }
     });
 
-// POPULATE OUR RACE LIST THE LAZY WAY
+// RACES:
 searchApi('races')
     .then( data => data.results)
     .then( results => {     
