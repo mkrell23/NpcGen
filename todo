@@ -26,4 +26,7 @@ NEXT:
 * Create character class
 * Populate character object from API calls and ability score rolls
 * Character display to user
-* (LOW PRIORITY) Add a subclass checkbox, blank to start, populated "onchange" from class selection
+* (LOW PRIORITY) Add a subclass/subrace checkbox, blank to start, populated "onchange" from class/race selection
+
+* CSS: on small screens selections should be single list down page
+* Larger screens: 200% more padding between elements
