@@ -20,17 +20,40 @@ function checkStatus(response) {
     }
   }
 
-// DICE METHODS
+// STAT GENERATION METHODS
 const rollD = diceSides => Math.floor(Math.random() * diceSides) + 1;
 
 function statRoll() {
-    const rolls = [];
+    let rolls = [];
     for (let i = 0; i < 4; i++) {
         rolls.push(rollD(6)); 
-    };  
-    const lowest = Math.min(...rolls);
-    return rolls.filter(e => e)
+    };
+    removeLowest(rolls);
+    return addDice(rolls);
 }; 
+
+function removeLowest(rolls) {
+    rolls.sort( (a, b) => a-b);
+    rolls.shift();
+    return rolls;
+};
+
+function addDice(rolls) {
+    let total = 0;
+    for (let i = 0; i < rolls.length; i++) {
+        const roll = rolls[i];
+        total += roll;
+    }
+    return total
+};
+
+function rollCharacter() {
+    let stats = [];
+    for (let i = 0; i < 6; i++) {
+        stats.push(statRoll());
+    };
+    return stats.sort( (a, b) => b - a);
+};
 
 // POPULATE OUR CLASS LIST THE LAZY WAY
 searchApi('classes')
