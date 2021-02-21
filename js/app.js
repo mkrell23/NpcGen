@@ -3,6 +3,7 @@ const submitButton = document.getElementById('submitButton');
 const charClass = document.getElementById('charClass');
 const charLevel = document.getElementById('charLevel');
 const charRace = document.getElementById('charRace');
+const charDisplay = document.getElementById('charDisplay');
 
 // FETCH METHODS
 // BASIC API SEARCH:
