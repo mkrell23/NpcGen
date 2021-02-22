@@ -122,11 +122,11 @@ function statsByClass(character){
     switch (charClass) {
         case "cleric":
             character.str = abilityScores[0];
-            character.dex = abilityScores[1];
+            character.dex = abilityScores[3];
             character.con = abilityScores[2];
-            character.cha = abilityScores[3];
-            character.wis = abilityScores[4];
-            character.int = abilityScores[5];
+            character.cha = abilityScores[5];
+            character.wis = abilityScores[1];
+            character.int = abilityScores[4];
             break;
         
         // BUILD THIS OUT!!!!!!!!!
