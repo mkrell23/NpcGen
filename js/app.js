@@ -98,10 +98,17 @@ searchApi('races')
         }
     });
 
+function displayResults(charName, charRace, charClass, charLevel){
+    const charResults = document.createElement('div');
+    charResults.innerText = `Character name: ${charName}
+    Character race: ${charRace}
+    Character class: ${charClass}
+    Character level: ${charLevel}`
+    charDisplay.appendChild(charResults);
+};
+
+// DO SOMETHING ON SUBMIT BUTTON CLICK    
 submitButton.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log("Character name: " + charName.value);
-    console.log("Character race: " + charRace.value);
-    console.log("Character class: " + charClass.value);
-    console.log("Character level: " + charLevel.value);
+    displayResults(charName.value, charRace.value, charClass.value, charLevel.value);
 });
