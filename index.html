@@ -24,7 +24,8 @@
                     <option value="selectOne" disabled selected>Select a Race</option>
                 </select>
             </label>
-            <label for="charLevel" class=" p-2 ">
+            <!-- Adding levels will have to be a future thing. Rethinking the way this works for multiclassing, feats, etc -->
+            <!-- <label for="charLevel" class=" p-2 ">
                 Character Level <select name="charLevel" id="charLevel" class="border-2 border-grey-500 rounded-full">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -46,11 +47,13 @@
                     <option value="18">18</option>
                     <option value="19">19</option>
                     <option value="20">20</option>
-                </select>
+                </select> -->
             </label></br>
             <input type="submit" value="Create Character" id="submitButton" class="bg-grey-100 text-black font-bold py-2 px-4 rounded border-2 border-grey-500 mx-auto m-4 sm:col-span-2 shadow-sm">
         </form>
-        <div id="charDisplay"></div>
+        <div id="charDisplay" class="font-serif border border-6 p-4 rounded-3x1 grid grid-cols-1 sm:grid-cols-2 sm:grid-rows-2 md:max-w-3xl md:mx-auto shadow">
+            
+        </div>
     <script src="./js/app.js"></script>
 </body>
 </html>
