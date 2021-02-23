@@ -65,7 +65,8 @@ searchApi('races')
 
 
 /*  
-// STAT GENERATION METHODS
+// RANDOM GENERATION METHODS
+// MAYBE MOVE TO CHARACTER CLASS?
 */
 
 // SIMPLE DICE ROLLER
@@ -90,98 +91,10 @@ function addDice(rolls) {
     return total
 };
 
-// RETURNS A TOTAL ROLL FOR ONE ABILITY SCORE
-function statRoll() {
-    let rolls = [];
-    for (let i = 0; i < 4; i++) {
-        rolls.push(rollD(6)); 
-    };
-    removeLowest(rolls);
-    return addDice(rolls);
-}; 
-
-// RETURNS A SET OF 6 ABILITY SCORES FOR A CHARACTER, SORTED HIGHEST TO LOWEST
-function rollCharacter() {
-    let stats = [];
-    for (let i = 0; i < 6; i++) {
-        stats.push(statRoll());
-    };
-    return stats.sort( (a, b) => b - a);
-};
-
-
-/*
-// CHARACTER CREATION METHODS
-*/
-
-// THIS IS WHERE WE GIVE THE CHARACTER THEIR ABILITY SCORES, BASED ON WHICH CLASS IS PICKED    
-function statsByClass(character){
-    const abilityScores = rollCharacter();
-    const charClass = character.charClass[0];
-
-    switch (charClass) {
-        case "cleric":
-            character.str = abilityScores[0];
-            character.dex = abilityScores[3];
-            character.con = abilityScores[2];
-            character.cha = abilityScores[5];
-            character.wis = abilityScores[1];
-            character.int = abilityScores[4];
-            break;
-        
-        // BUILD THIS OUT!!!!!!!!!
-        default:
-            character.str = abilityScores[0];
-            character.dex = abilityScores[1];
-            character.con = abilityScores[2];
-            character.cha = abilityScores[3];
-            character.wis = abilityScores[4];
-            character.int = abilityScores[5];
-            break;
-        }
-
-        return character;
-    };
-
-// CREATE A CHARACTER OBJECT WITH THE PROPERTIES WE NEED TO GET STARTED
-function createCharacter(charName, charRace, charClass){
-    const character = { charName, charRace, charClass: [charClass]}
-    statsByClass(character);
-
-    // API STUFF SEARCHING AND ADDING PROPERTIES AND SUCH GOES HERE
-
-    return character;
-};
-
-// METHOD TO GENERATE THE HTML TO DISPLAY CHARACTER INFO
-function displayCharacter(character) {
-    const html = `<div>Character name: ${character.charName}</div>
-    <div>Character race: ${character.charRace}</div>
-    <div>Character class: ${character.charClass[0]}</div>
-    <div>Strength: ${character.str}</div>
-    <div>Constitution: ${character.con}</div>
-    <div>Dexterity: ${character.dex}</div>
-    <div>Charisma: ${character.cha}</div>
-    <div>Intelligence: ${character.int}</div>
-    <div>Wisdom: ${character.wis}</div>`;
-    charDisplay.innerHTML += html ;
-}
-
-// BASIC TESTING METHOD TO CHECK THINGS ARE HOOKED UP
-function displayResults(charName, charRace, charClass){
-    const charResults = document.createElement('div');
-    charResults.innerHTML = `Character name: ${charName}
-    Character race: ${charRace}
-    Character class: ${charClass}
-    `
-    charDisplay.appendChild(charResults);
-};
-
 // DO SOMETHING ON SUBMIT BUTTON CLICK    
 submitButton.addEventListener('click', (e) => {
     e.preventDefault();
-    // displayResults(charName.value, charRace.value, charClass.value);
-    const character = createCharacter(charName.value, charRace.value, charClass.value);
-    displayCharacter(character);
+    const character = new Character(charName.value, charRace.value, charClass.value);
+    charDisplay.innerHTML = character.displayCharacter();
     console.dir(character);
 });
