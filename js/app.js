@@ -14,6 +14,7 @@ function searchApi(search){
     return fetch('https://www.dnd5eapi.co/api/' + search)
         .then(checkStatus)  
         .then(response => response.json())
+        .then( data => data.results)
         .catch(error => console.log('Looks like there was a problem!', error));
 };
 
@@ -33,7 +34,6 @@ function checkStatus(response) {
 
 // CLASSES:
 searchApi('classes')
-    .then( data => data.results)
     .then( results => {
         for (const cName in results) {
             if (Object.hasOwnProperty.call(results, cName)) {
@@ -49,7 +49,6 @@ searchApi('classes')
 
 // RACES:
 searchApi('races')
-    .then( data => data.results)
     .then( results => {     
         for (const rName in results) {
             if (Object.hasOwnProperty.call(results, rName)) {
@@ -62,7 +61,7 @@ searchApi('races')
             }
         }
     });
-
+    
 
 /*  
 // RANDOM GENERATION METHODS
@@ -95,6 +94,7 @@ function addDice(rolls) {
 submitButton.addEventListener('click', (e) => {
     e.preventDefault();
     const character = new Character(charName.value, charRace.value, charClass.value);
-    charDisplay.innerHTML = character.displayCharacter();
+    charDisplay.innerHTML += character.displayCharacter();
+    
     console.dir(character);
 });

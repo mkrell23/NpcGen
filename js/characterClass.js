@@ -3,6 +3,9 @@ class Character {
         this.charName = charName;
         this.charRace = charRace;
         this.charClass = [charClass];
+
+// ***THIS IS NOT WORKING*** - how to attach properties from results easily? 
+        searchApi("/races/" + this.charRace).then( results => this.raceInfo = results);
         this.statsByClass();
     }
 
@@ -49,20 +52,20 @@ class Character {
                 this.int = abilityScores[5];
                 break;
             }
-    
-            return this;
-        };
+      
+        return this;
+    };
 
-        displayCharacter() {
-            const html = `<div>Character name: ${this.charName}</div>
-            <div>Character race: ${this.charRace}</div>
-            <div>Character class: ${this.charClass[0]}</div>
-            <div>Strength: ${this.str}</div>
-            <div>Constitution: ${this.con}</div>
-            <div>Dexterity: ${this.dex}</div>
-            <div>Charisma: ${this.cha}</div>
-            <div>Intelligence: ${this.int}</div>
-            <div>Wisdom: ${this.wis}</div>`;
-            return html ;
-        };
+    displayCharacter() {
+        const html = `<div>Character name: ${this.charName}</div>
+        <div>Character race: ${this.charRace}</div>
+        <div>Character class: ${this.charClass[0]}</div>
+        <div>Strength: ${this.str}</div>
+        <div>Constitution: ${this.con}</div>
+        <div>Dexterity: ${this.dex}</div>
+        <div>Charisma: ${this.cha}</div>
+        <div>Intelligence: ${this.int}</div>
+        <div>Wisdom: ${this.wis}</div>`;
+        return html ;
+    };
 }
