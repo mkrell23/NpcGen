@@ -3,9 +3,10 @@ class Character {
         this.charName = charName;
         this.charRace = charRace;
         this.charClass = [charClass];
-
-// ***THIS IS NOT WORKING*** - how to attach properties from results easily? 
-        searchApi("/races/" + this.charRace).then( results => this.raceInfo = results);
+        searchApi("/races/" + this.charRace)
+            .then(response => { 
+                this.raceInfo = response;
+            });
         this.statsByClass();
     }
 
@@ -56,6 +57,7 @@ class Character {
         return this;
     };
 
+    // TODO: MAKE PRETTY
     displayCharacter() {
         const html = `<div>Character name: ${this.charName}</div>
         <div>Character race: ${this.charRace}</div>

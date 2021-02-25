@@ -13,8 +13,7 @@ const charDisplay = document.getElementById('charDisplay');
 function searchApi(search){
     return fetch('https://www.dnd5eapi.co/api/' + search)
         .then(checkStatus)  
-        .then(response => response.json())
-        .then( data => data.results)
+        .then(response => response.json())       
         .catch(error => console.log('Looks like there was a problem!', error));
 };
 
@@ -34,6 +33,7 @@ function checkStatus(response) {
 
 // CLASSES:
 searchApi('classes')
+.then( data => data.results)
     .then( results => {
         for (const cName in results) {
             if (Object.hasOwnProperty.call(results, cName)) {
@@ -49,6 +49,7 @@ searchApi('classes')
 
 // RACES:
 searchApi('races')
+    .then( data => data.results)
     .then( results => {     
         for (const rName in results) {
             if (Object.hasOwnProperty.call(results, rName)) {
