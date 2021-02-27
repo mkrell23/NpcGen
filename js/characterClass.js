@@ -3,7 +3,7 @@ class Character {
         this.charName = charName;
         this.charRace = charRace;
         this.charClass = [charClass];
-        searchApi("/races/" + this.charRace)
+        searchApi("/api/races/" + this.charRace)
             .then(response => { 
                 this.raceInfo = response;
             });

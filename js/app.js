@@ -11,7 +11,7 @@ const charDisplay = document.getElementById('charDisplay');
 
 // BASIC API SEARCH:
 function searchApi(search){
-    return fetch('https://www.dnd5eapi.co/api/' + search)
+    return fetch('https://www.dnd5eapi.co' + search)
         .then(checkStatus)  
         .then(response => response.json())       
         .catch(error => console.log('Looks like there was a problem!', error));
@@ -32,7 +32,7 @@ function checkStatus(response) {
 */
 
 // CLASSES:
-searchApi('classes')
+searchApi('/api/classes')
 .then( data => data.results)
     .then( results => {
         for (const cName in results) {
@@ -48,7 +48,7 @@ searchApi('classes')
     });
 
 // RACES:
-searchApi('races')
+searchApi('/api/races')
     .then( data => data.results)
     .then( results => {     
         for (const rName in results) {
