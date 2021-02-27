@@ -6,10 +6,10 @@ const charRace = document.getElementById('charRace');
 const charDisplay = document.getElementById('charDisplay');
 
 /*
-// FETCH METHODS
+// Fetch Methods
 */
 
-// BASIC API SEARCH:
+// Basic API Search:
 function searchApi(search){
     return fetch('https://www.dnd5eapi.co' + search)
         .then(checkStatus)  
@@ -17,7 +17,7 @@ function searchApi(search){
         .catch(error => console.log('Looks like there was a problem!', error));
 };
 
-// BASIC RESPONSE CHECKING
+// Basic Response Checking
 function checkStatus(response) {
     if (response.ok) {
       return Promise.resolve(response);
@@ -28,10 +28,10 @@ function checkStatus(response) {
 
 
 /*
-// POPULATE OUR INPUT LISTS THE LAZY WAY
+// Populate our lists the lazy way:
 */
 
-// CLASSES:
+// Classes:
 searchApi('/api/classes')
 .then( data => data.results)
     .then( results => {
@@ -65,23 +65,23 @@ searchApi('/api/races')
     
 
 /*  
-// RANDOM GENERATION METHODS
+// Random generation methods:
 // MAYBE MOVE TO CHARACTER CLASS?
 */
 
-// SIMPLE DICE ROLLER
+// Simple Dice Roller
 function rollD(diceSides) {
     return Math.floor(Math.random() * diceSides) + 1
 };
 
-// REMOVES LOWEST NUMBER FROM ARRAY, RETURNS ARRAY SORTED LOW TO HIGH
+// Removes lovest number from array, returns array sorted low to high
 function removeLowest(rolls) {
     rolls.sort( (a, b) => a-b);
     rolls.shift();
     return rolls;
 };
 
-// ADDS ALL TOGETHER, RETURNS TOTAL
+// Adds all together, returns total
 function addDice(rolls) {
     let total = 0;
     for (let i = 0; i < rolls.length; i++) {
@@ -91,20 +91,24 @@ function addDice(rolls) {
     return total
 };
 
-// FUNCTION TO HIDE THE CHARACTER CREATOR FORM AND ADD BUTTON TO RESTORE IT
+// TODO:
+// Function to hide the character creator form and add button to restore it
 function hideCharacterCreatorForm(){
     // DO THINGS HERE
     // MODIFY EVENT LISTENER TO LISTEN FOR OTHER BUTTON CLICKS
 };
 
-// DO SOMETHING ON SUBMIT BUTTON CLICK    
+// TODO: generalize it and add if statement for different buttons
+
+// Do something on button click
 submitButton.addEventListener('click', (e) => {
     e.preventDefault();
 
     hideCharacterCreatorForm();
+
     const character = new Character(charName.value, charRace.value, charClass.value);
     charDisplay.classList.remove("hidden");
-    charDisplay.innerHTML += character.displayCharacter();
+    charDisplay.innerHTML = character.displayCharacter();
     
     console.dir(character);
 });
