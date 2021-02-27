@@ -59,15 +59,15 @@ class Character {
 
     // TODO: MAKE PRETTY
     displayCharacter() {
-        const html = `<div>Character name: ${this.charName}</div>
-        <div>Character race: ${this.charRace}</div>
-        <div>Character class: ${this.charClass[0]}</div>
-        <div>Strength: ${this.str}</div>
-        <div>Constitution: ${this.con}</div>
-        <div>Dexterity: ${this.dex}</div>
-        <div>Charisma: ${this.cha}</div>
-        <div>Intelligence: ${this.int}</div>
-        <div>Wisdom: ${this.wis}</div>`;
+        const html = `<div class="border-2 border-grey-500 rounded-md">Character name: ${this.charName}</div>
+        <div class="border-2 border-grey-500 rounded-md">Character race: ${this.charRace}</div>
+        <div class="border-2 border-grey-500 rounded-md">Character class: ${this.charClass[0]}</div>
+        <div class="border-2 border-grey-500 rounded-md">Strength: ${this.str}</div>
+        <div class="border-2 border-grey-500 rounded-md">Constitution: ${this.con}</div>
+        <div class="border-2 border-grey-500 rounded-md">Dexterity: ${this.dex}</div>
+        <div class="border-2 border-grey-500 rounded-md">Charisma: ${this.cha}</div>
+        <div class="border-2 border-grey-500 rounded-md">Intelligence: ${this.int}</div>
+        <div class="border-2 border-grey-500 rounded-md">Wisdom: ${this.wis}</div>`;
         return html ;
     };
 }
