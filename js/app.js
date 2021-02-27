@@ -91,9 +91,17 @@ function addDice(rolls) {
     return total
 };
 
+// FUNCTION TO HIDE THE CHARACTER CREATOR FORM AND ADD BUTTON TO RESTORE IT
+function hideCharacterCreatorForm(){
+    // DO THINGS HERE
+    // MODIFY EVENT LISTENER TO LISTEN FOR OTHER BUTTON CLICKS
+};
+
 // DO SOMETHING ON SUBMIT BUTTON CLICK    
 submitButton.addEventListener('click', (e) => {
     e.preventDefault();
+
+    hideCharacterCreatorForm();
     const character = new Character(charName.value, charRace.value, charClass.value);
     charDisplay.classList.remove("hidden");
     charDisplay.innerHTML += character.displayCharacter();
