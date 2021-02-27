@@ -95,6 +95,7 @@ function addDice(rolls) {
 submitButton.addEventListener('click', (e) => {
     e.preventDefault();
     const character = new Character(charName.value, charRace.value, charClass.value);
+    charDisplay.classList.remove("hidden");
     charDisplay.innerHTML += character.displayCharacter();
     
     console.dir(character);
