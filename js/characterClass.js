@@ -8,13 +8,13 @@ class Character {
                 this.raceInfo = response;
             });
         searchApi("/api/classes/" + this.charClass)
-        .then(response => { 
-            this.classInfo = response;
-        });
+            .then(response => { 
+                this.classInfo = response;
+            });
         this.statsByClass();
     }
 
-    // RETURNS A TOTAL ROLL FOR ONE ABILITY SCORE
+    // Returns a total for one ability score
     statRoll() {
         let rolls = [];
         for (let i = 0; i < 4; i++) {
@@ -24,7 +24,7 @@ class Character {
         return addDice(rolls);
     }; 
 
-    // RETURNS A SET OF 6 ABILITY SCORES FOR A CHARACTER, SORTED HIGHEST TO LOWEST
+    // Returns a set of 6 ability scores for a character, sorted highest to lowest
     rollCharacter() {
         let stats = [];
         for (let i = 0; i < 6; i++) {
@@ -61,7 +61,7 @@ class Character {
         return this;
     };
 
-    // TODO: MAKE PRETTY
+    // TODO: better way to do this? Short answer: yes
     displayCharacter() {
         const html = `<div class="border-2 border-grey-500 rounded-md">Character name: ${this.charName}</div>
         <div class="border-2 border-grey-500 rounded-md">Character race: ${this.charRace}</div>

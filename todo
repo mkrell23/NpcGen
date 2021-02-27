@@ -23,9 +23,19 @@ General Program Flow:
 
 
 NEXT:
-* Create character class
-* Populate character object from API calls and ability score rolls
-* Character display to user
-* (LOW PRIORITY) Add a subclass/subrace checkbox, blank to start, populated "onchange" from class/race selection
 
-* CSS: Mockup results display
+Character Class:
+* Add actual properties to character class from API calls
+* Modify stats, and other properties from race and class
+* Generate health 
+* Add calculated getters for things like ability bonuses
+* For each API result with a choice add ability to chose and add results to object
+* Display these properties to the user
+
+Main App:
+* Add ability to save genrated character
+* Add ability to load previous character, including button
+* Modify current event listener to listen for different button clicks
+* (Lower Priority) Build methods to hide/show character creation form
+* Add ability to add levels to character
+* (LOW PRIORITY) Add a subclass/subrace checkbox, blank to start, populated "onchange" from class/race selection
