@@ -4,7 +4,9 @@
 
 ### Create new D&D NPCs on the fly
 
-This single page app is intended to remove the tedium of creating non-player characters in a D&D campaign, a labor intensive necessity for any DM. Currently at "proof of concept" stage rather than "reliable tool".
+This single page app is intended to remove the tedium of creating non-player characters in a D&D campaign, a labor intensive necessity for any DM.
+
+Currently at "proof of concept" stage rather than "reliable tool".
 
 Made possible thanks to the [D&D 5th Edition API](https://www.dnd5eapi.co/)
 
