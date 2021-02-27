@@ -41,6 +41,6 @@ Project requirements met:
     * The constructor method for the Character class takes three parameters: the character's name, race, and class
 
 Instructions to Run:
-* [CLick Here](https://mkrell23.github.io/NpcGen/) to see it on GitHub Pages
+* [Click Here](https://mkrell23.github.io/NpcGen/) to see it on GitHub Pages
 * Download files, start webserver in directory, launch Chrome.
     * I usually use `python3 -m http.server 8080 --bind 127.0.0.1`
