@@ -7,6 +7,10 @@ class Character {
             .then(response => { 
                 this.raceInfo = response;
             });
+        searchApi("/api/classes/" + this.charClass)
+        .then(response => { 
+            this.classInfo = response;
+        });
         this.statsByClass();
     }
 
