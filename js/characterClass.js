@@ -10,10 +10,10 @@ class Character {
         this.int = 0;
         this.proficiencies = [];
         this.saves = [];
-        this.charClass = [charClass];
+        this.charLevels = [charClass];
         this.statsByClass();
 
-        searchApi("/api/classes/" + this.charClass)
+        searchApi("/api/classes/" + charClass)
             .then(response => { 
                 this.classInfo = response;
 
@@ -42,6 +42,7 @@ class Character {
                 response.starting_proficiencies.forEach(skill => this.proficiencies.push(skill));
                 // TODO : Proficiency choice picking function goes here
             });
+        
     };
 
     // Returns a total for one ability score
@@ -65,7 +66,7 @@ class Character {
 
     statsByClass(){
         const abilityScores = this.rollCharacter();
-        const charClass = this.charClass[0];
+        const charClass = this.charLevels[0];
 
         switch (charClass) {
             case "cleric":
@@ -106,13 +107,15 @@ class Character {
     displayCharacter() {
         const html = `<div class="border-2 border-grey-500 rounded-md">Character name: ${this.charName}</div>
         <div class="border-2 border-grey-500 rounded-md">Character race: ${this.charRace}</div>
-        <div class="border-2 border-grey-500 rounded-md">Character class: ${this.charClass[0]}</div>
+        <div class="border-2 border-grey-500 rounded-md">Character class: ${this.charLevels[0]}</div>
         <div class="border-2 border-grey-500 rounded-md">Strength: ${this.str}</div>
         <div class="border-2 border-grey-500 rounded-md">Constitution: ${this.con}</div>
         <div class="border-2 border-grey-500 rounded-md">Dexterity: ${this.dex}</div>
         <div class="border-2 border-grey-500 rounded-md">Charisma: ${this.cha}</div>
         <div class="border-2 border-grey-500 rounded-md">Intelligence: ${this.int}</div>
-        <div class="border-2 border-grey-500 rounded-md">Wisdom: ${this.wis}</div>`;
+        <div class="border-2 border-grey-500 rounded-md">Wisdom: ${this.wis}</div>
+        <div class="border-2 border-grey-500 rounded-md">Hit Points: ${this.hp}</div>
+        `;
         return html ;
     };
 };
