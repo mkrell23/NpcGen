@@ -10,19 +10,22 @@ const charDisplay = document.getElementById('charDisplay');
 */
 
 // Basic API Search:
-function searchApi(search){
-    return fetch('https://www.dnd5eapi.co' + search)
-        .then(checkStatus)  
-        .then(response => response.json())       
-        .catch(error => console.log('Looks like there was a problem!', error));
+async function searchApi(search){
+    try {
+        const response = await fetch('https://www.dnd5eapi.co' + search);
+        const goNoGo = await checkStatus(response);
+        return goNoGo.json();
+    } catch (error) {
+        console.log('Looks like there was a problem!', error)
+    }
 };
 
 // Basic Response Checking
-function checkStatus(response) {
+async function checkStatus(response) {
     if (response.ok) {
-      return Promise.resolve(response);
+      return await Promise.resolve(response);
     } else {
-      return Promise.reject(new Error(response.statusText));
+      return await Promise.reject(new Error(response.statusText));
     }
   }
 
@@ -62,7 +65,6 @@ searchApi('/api/races')
             }
         }
     });
-    
 
 /*  
 // Random generation methods:
