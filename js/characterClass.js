@@ -11,23 +11,6 @@ class Character {
         this.proficiencies = [];
         this.saves = [];
         this.charLevels = [charClass];
-        this.statsByClass();
-
-        searchApi("/api/classes/" + charClass)
-            .then(response => { 
-                this.classInfo = response;
-
-                this.hitDie = response.hit_die;
-                response.proficiencies.forEach(skill => this.proficiencies.push(skill));
-
-                // TODO: function to chose proficiencies goes here
-
-                response.saving_throws.forEach(save => this.saves.push(save));
-
-                // Saving starting equipment?
-
-                // TODO: Spell things go here
-            });
 
         searchApi("/api/races/" + this.charRace)
             .then(response => { 
@@ -42,7 +25,28 @@ class Character {
                 response.starting_proficiencies.forEach(skill => this.proficiencies.push(skill));
                 // TODO : Proficiency choice picking function goes here
             });
-        
+
+        this.statsByClass();
+
+        searchApi("/api/classes/" + charClass)
+            .then(response => { 
+                this.classInfo = response;
+
+                this.hitDie = response.hit_die;
+
+                this.hp = this.hitDie + Math.floor((this.con- 10) / 2 );
+
+                response.proficiencies.forEach(skill => this.proficiencies.push(skill));
+
+                // TODO: function to chose proficiencies goes here
+
+                response.saving_throws.forEach(save => this.saves.push(save));
+
+                // Saving starting equipment?
+
+                // TODO: Spell things go here
+            });
+
     };
 
     // Returns a total for one ability score

@@ -108,7 +108,8 @@ submitButton.addEventListener('click', (e) => {
 
     const character = new Character(charName.value, charRace.value, charClass.value);
     charDisplay.classList.remove("hidden");
-    charDisplay.innerHTML = character.displayCharacter();
+
+    setTimeout(() => charDisplay.innerHTML = character.displayCharacter(), 100);;
     
     console.dir(character);
 });
