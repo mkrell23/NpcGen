@@ -5,6 +5,11 @@ const charLevel = document.getElementById('charLevel');
 const charRace = document.getElementById('charRace');
 const charDisplay = document.getElementById('charDisplay');
 
+//Generic error handling method
+function handleError(error){
+    console.log('Looks like there was a problem!', error);
+};
+
 /*
 // Fetch Methods
 */
@@ -16,8 +21,8 @@ async function searchApi(search){
         const goNoGo = await checkStatus(response);
         return goNoGo.json();
     } catch (error) {
-        console.log('Looks like there was a problem!', error)
-    }
+        handleError(error);
+    };
 };
 
 // Basic Response Checking
@@ -101,6 +106,22 @@ function hideCharacterCreatorForm(){
 };
 
 
+// Creating a character with the API response
+async function createCharacter(charName, charRace, charClass){
+    try {
+
+        //Promise all this
+        const raceInfo = await searchApi("/api/races/" + charRace);
+        const classInfo = await searchApi("/api/classes/" + charClass);
+
+        return new Character(charName, charRace, charClass, raceInfo, classInfo);
+
+    } catch (error) {
+        handleError(error);
+    }
+};
+
+
 // TODO: generalize it and add if statement for different buttons
 // Do something on button click
 submitButton.addEventListener('click', (e) => {
@@ -108,11 +129,15 @@ submitButton.addEventListener('click', (e) => {
 
     hideCharacterCreatorForm();
     charDisplay.classList.remove("hidden");
-
-    const character = new Character(charName.value, charRace.value, charClass.value);
-
-    // THIS IS A SIGN YOU MESSED UP
-    setTimeout(() => charDisplay.innerHTML = character.displayCharacter(), 150);;
     
-    console.dir(character);
+
+    createCharacter(charName.value, charRace.value, charClass.value)
+        .then(character => {
+            
+            charDisplay.innerHTML = character.displayCharacter();
+            console.dir(character);
+        })
+        .catch(handleError);
+
+    
 });
