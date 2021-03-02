@@ -219,3 +219,59 @@ class Character {
         return html ;
     };
 };
+
+
+/*  
+// Character Helper Methods:
+*/
+
+// Factory function to create a character from an API response
+async function createCharacter(charName, charRace, charClass){
+    try {
+
+        //Promise all this
+        const raceInfo = await searchApi("/api/races/" + charRace);
+        const classInfo = await searchApi("/api/classes/" + charClass);
+
+        return new Character(charName, charRace, charClass, raceInfo, classInfo);
+
+    } catch (error) {
+        handleError(error);
+    }
+};
+
+// Adds a level of a given class to character
+async function addClassLevel(character, charClass){
+    const classLevel = await searchApi(charClass);
+
+    // DO SOMETHING HERE
+};
+
+
+
+/*  
+// Random generation methods:
+*/
+
+// Simple Dice Roller
+function rollD(diceSides) {
+    return Math.floor(Math.random() * diceSides) + 1
+};
+
+// Removes lovest number from array, returns array sorted low to high
+function removeLowest(rolls) {
+    rolls.sort( (a, b) => a-b);
+    rolls.shift();
+    return rolls;
+};
+
+// Adds all together, returns total
+function addDice(rolls) {
+    let total = 0;
+    for (let i = 0; i < rolls.length; i++) {
+        const roll = rolls[i];
+        total += roll;
+    }
+    return total
+};
+

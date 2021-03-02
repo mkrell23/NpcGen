@@ -5,16 +5,19 @@ const charLevel = document.getElementById('charLevel');
 const charRace = document.getElementById('charRace');
 const charDisplay = document.getElementById('charDisplay');
 
+
 //Generic error handling method
 function handleError(error){
     console.log('Looks like there was a problem!', error);
 };
 
+
 /*
 // Fetch Methods
 */
 
-// Basic API Search:
+// Basic API Search
+// Returns promise with JSON object buried inside like a nugget of data nougat
 async function searchApi(search){
     try {
         const response = await fetch('https://www.dnd5eapi.co' + search);
@@ -71,33 +74,6 @@ searchApi('/api/races')
         }
     });
 
-/*  
-// Random generation methods:
-// MAYBE MOVE TO CHARACTER CLASS?
-*/
-
-// Simple Dice Roller
-function rollD(diceSides) {
-    return Math.floor(Math.random() * diceSides) + 1
-};
-
-// Removes lovest number from array, returns array sorted low to high
-function removeLowest(rolls) {
-    rolls.sort( (a, b) => a-b);
-    rolls.shift();
-    return rolls;
-};
-
-// Adds all together, returns total
-function addDice(rolls) {
-    let total = 0;
-    for (let i = 0; i < rolls.length; i++) {
-        const roll = rolls[i];
-        total += roll;
-    }
-    return total
-};
-
 
 // Function to hide the character creator form and add button to restore it
 function hideCharacterCreatorForm(){
@@ -106,31 +82,12 @@ function hideCharacterCreatorForm(){
 };
 
 
-// Creating a character with the API response
-async function createCharacter(charName, charRace, charClass){
-    try {
-
-        //Promise all this
-        const raceInfo = await searchApi("/api/races/" + charRace);
-        const classInfo = await searchApi("/api/classes/" + charClass);
-
-        return new Character(charName, charRace, charClass, raceInfo, classInfo);
-
-    } catch (error) {
-        handleError(error);
-    }
-};
-
-
-// TODO: generalize it and add if statement for different buttons
-// Do something on button click
-submitButton.addEventListener('click', (e) => {
+function handleCreateCharacterClick(e){
     e.preventDefault();
 
     hideCharacterCreatorForm();
     charDisplay.classList.remove("hidden");
     
-
     createCharacter(charName.value, charRace.value, charClass.value)
         .then(character => {
             
@@ -138,6 +95,9 @@ submitButton.addEventListener('click', (e) => {
             console.dir(character);
         })
         .catch(handleError);
+};
 
-    
-});
+
+// TODO: generalize it and add if statement for different buttons
+// Do something on button click
+submitButton.addEventListener('click', handleCreateCharacterClick);
