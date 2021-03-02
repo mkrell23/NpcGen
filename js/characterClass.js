@@ -1,5 +1,5 @@
 class Character {
-    constructor(charName, charRace, charClass){
+    constructor(charName, charRace, charClass, raceInfo, classInfo){
         this.charName = charName;
         this.charRace = charRace;
         this.str = 0;
@@ -12,40 +12,36 @@ class Character {
         this.saves = [];
         this.charLevels = [charClass];
 
-        searchApi("/api/races/" + this.charRace)
-            .then(response => { 
-                this.raceInfo = response;
+        //Handle the info from the raceInfo response object
+        this.raceInfo = raceInfo;
 
-                response.ability_bonuses.forEach(bonus => this[bonus.ability_score.index] += bonus.bonus);
+        raceInfo.ability_bonuses.forEach(bonus => this[bonus.ability_score.index] += bonus.bonus);
 
-                // languages? If yes they go here, same pattern as other choices
-                
-                this.size = response.size;
-                this.speed = response.speed;
-                response.starting_proficiencies.forEach(skill => this.proficiencies.push(skill));
-                // TODO : Proficiency choice picking function goes here
-            });
+        // languages?
+        
+        this.size = raceInfo.size;
+        this.speed = raceInfo.speed;
+        raceInfo.starting_proficiencies.forEach(skill => this.proficiencies.push(skill));
+        // Proficiency choice picking?
+
+        // Handle the info from the classInfo response object
+        this.classInfo = classInfo;
+
+        this.hitDie = classInfo.hit_die;
+
+        this.hp = this.hitDie + Math.floor((this.con- 10) / 2 );
+
+        classInfo.proficiencies.forEach(skill => this.proficiencies.push(skill));
+
+        // TODO: function to chose proficiencies goes here
+
+        classInfo.saving_throws.forEach(save => this.saves.push(save));
+
+        // Saving starting equipment?
+
+        // TODO: Spell things go here
 
         this.statsByClass();
-
-        searchApi("/api/classes/" + charClass)
-            .then(response => { 
-                this.classInfo = response;
-
-                this.hitDie = response.hit_die;
-
-                this.hp = this.hitDie + Math.floor((this.con- 10) / 2 );
-
-                response.proficiencies.forEach(skill => this.proficiencies.push(skill));
-
-                // TODO: function to chose proficiencies goes here
-
-                response.saving_throws.forEach(save => this.saves.push(save));
-
-                // Saving starting equipment?
-
-                // TODO: Spell things go here
-            });
 
     };
 
