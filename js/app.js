@@ -93,25 +93,26 @@ function addDice(rolls) {
     return total
 };
 
-// TODO:
+
 // Function to hide the character creator form and add button to restore it
 function hideCharacterCreatorForm(){
     // DO THINGS HERE
     // MODIFY EVENT LISTENER TO LISTEN FOR OTHER BUTTON CLICKS
 };
 
-// TODO: generalize it and add if statement for different buttons
 
+// TODO: generalize it and add if statement for different buttons
 // Do something on button click
 submitButton.addEventListener('click', (e) => {
     e.preventDefault();
 
     hideCharacterCreatorForm();
-
-    const character = new Character(charName.value, charRace.value, charClass.value);
     charDisplay.classList.remove("hidden");
 
-    setTimeout(() => charDisplay.innerHTML = character.displayCharacter(), 100);;
+    const character = new Character(charName.value, charRace.value, charClass.value);
+
+    // THIS IS A SIGN YOU MESSED UP
+    setTimeout(() => charDisplay.innerHTML = character.displayCharacter(), 150);;
     
     console.dir(character);
 });

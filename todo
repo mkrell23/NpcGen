@@ -24,6 +24,9 @@ General Program Flow:
 
 NEXT:
 
+REWORK PROMISE CHAINS TO SOMETHING REASONABLE
+RETHINK WAY CHARACTERS ARE CONSTRUCTED
+
 Character Class:
 * Add calculated getters for things like ability bonuses
 * Generate health 
