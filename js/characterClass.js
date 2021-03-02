@@ -72,24 +72,124 @@ class Character {
         const abilityScores = this.rollCharacter();
         const charClass = this.charLevels[0];
 
+        // TODO: set prop for subclass selection, branch out
+        // Stats for base classes with no subclass selected
         switch (charClass) {
-            case "cleric":
+            case "barbarian":
                 this.str += abilityScores[0];
-                this.dex += abilityScores[3];
-                this.con += abilityScores[2];
-                this.cha += abilityScores[5];
-                this.wis += abilityScores[1];
-                this.int += abilityScores[4];
+                this.dex += abilityScores[2];
+                this.con += abilityScores[1];
+                this.int += abilityScores[5];
+                this.wis += abilityScores[4];
+                this.cha += abilityScores[3];
                 break;
             
-            // BUILD THIS OUT!!!!!!!!!
+            case "bard":
+                this.str += abilityScores[4];
+                this.dex += abilityScores[1];
+                this.con += abilityScores[3];
+                this.int += abilityScores[5];
+                this.wis += abilityScores[2];
+                this.cha += abilityScores[0];
+                break;
+            
+            case "cleric":
+                this.str += abilityScores[3];
+                this.dex += abilityScores[5];
+                this.con += abilityScores[1];
+                this.int += abilityScores[4];
+                this.wis += abilityScores[0];
+                this.cha += abilityScores[2];
+                break;
+
+            case "druid":
+                this.str += abilityScores[5];
+                this.dex += abilityScores[2];
+                this.con += abilityScores[4];
+                this.int += abilityScores[3];
+                this.wis += abilityScores[0];
+                this.cha += abilityScores[1];
+                break;
+
+            case "fighter":
+                this.str += abilityScores[0];
+                this.dex += abilityScores[2];
+                this.con += abilityScores[1];
+                this.int += abilityScores[3];
+                this.wis += abilityScores[5];
+                this.cha += abilityScores[4];
+                break;
+
+            case "monk":
+                this.str += abilityScores[3];
+                this.dex += abilityScores[1];
+                this.con += abilityScores[2];
+                this.int += abilityScores[4];
+                this.wis += abilityScores[0];
+                this.cha += abilityScores[5];
+                break;
+
+            case "paladin":
+                this.str += abilityScores[1];
+                this.dex += abilityScores[5];
+                this.con += abilityScores[2];
+                this.int += abilityScores[4];
+                this.wis += abilityScores[3];
+                this.cha += abilityScores[0];
+                break;
+
+            case "ranger":
+                this.str += abilityScores[3];
+                this.dex += abilityScores[0];
+                this.con += abilityScores[2];
+                this.int += abilityScores[4];
+                this.wis += abilityScores[1];
+                this.cha += abilityScores[5];
+                break;
+            
+            case "rogue":
+                this.str += abilityScores[5];
+                this.dex += abilityScores[0];
+                this.con += abilityScores[1];
+                this.int += abilityScores[4];
+                this.wis += abilityScores[3];
+                this.cha += abilityScores[2];
+                break;
+
+            case "sorcerer":
+                this.str += abilityScores[5];
+                this.dex += abilityScores[1];
+                this.con += abilityScores[2];
+                this.int += abilityScores[3];
+                this.wis += abilityScores[4];
+                this.cha += abilityScores[0];
+                break;
+
+            case "warlock":
+                this.str += abilityScores[4];
+                this.dex += abilityScores[2];
+                this.con += abilityScores[1];
+                this.int += abilityScores[3];
+                this.wis += abilityScores[5];
+                this.cha += abilityScores[0];
+                break;
+
+            case "wizard":
+                this.str += abilityScores[5];
+                this.dex += abilityScores[1];
+                this.con += abilityScores[3];
+                this.int += abilityScores[0];
+                this.wis += abilityScores[2];
+                this.cha += abilityScores[4];
+                break;      
+            
             default:
                 this.str += abilityScores[0];
                 this.dex += abilityScores[1];
                 this.con += abilityScores[2];
-                this.cha += abilityScores[3];
+                this.int += abilityScores[3];
                 this.wis += abilityScores[4];
-                this.int += abilityScores[5];
+                this.cha += abilityScores[5];
                 break;
             }
       
