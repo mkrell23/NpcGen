@@ -1,3 +1,6 @@
+const saveButton = document.getElementById('saveButton');
+const newButton = document.getElementById('newButton');
+const loadButton = document.getElementById('loadButton');
 const charName = document.getElementById('charName');
 const submitButton = document.getElementById('submitButton');
 const charClass = document.getElementById('charClass');
@@ -76,21 +79,26 @@ searchApi('/api/races')
 
 
 // Function to hide the character creator form and add button to restore it
-function hideCharacterCreatorForm(){
-    // DO THINGS HERE
-    // MODIFY EVENT LISTENER TO LISTEN FOR OTHER BUTTON CLICKS
+function hideNewCharacterForm(){
+    document.getElementById('charForm').classList.add("hidden");
+    charDisplay.classList.remove("hidden");
+    saveButton.classList.remove("hidden");
+    newButton.classList.remove("hidden");
+};
+
+// Hides character display, shows new character form again
+function showNewCharacterForm() {
+    charDisplay.classList.add("hidden");
+    document.getElementById('charForm').classList.remove("hidden");
+    newButton.classList.remove("hidden");
 };
 
 
 function handleCreateCharacterClick(e){
     e.preventDefault();
-
-    hideCharacterCreatorForm();
-    charDisplay.classList.remove("hidden");
-    
+    hideNewCharacterForm();    
     createCharacter(charName.value, charRace.value, charClass.value)
         .then(character => {
-            
             charDisplay.innerHTML = character.displayCharacter();
             console.dir(character);
         })
@@ -98,6 +106,6 @@ function handleCreateCharacterClick(e){
 };
 
 
-// TODO: generalize it and add if statement for different buttons
-// Do something on button click
+// Do things on button clicks
+newButton.addEventListener('click', showNewCharacterForm);
 submitButton.addEventListener('click', handleCreateCharacterClick);
