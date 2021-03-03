@@ -26,6 +26,7 @@ class Character {
 
         // Handle the info from the classInfo response object
         this.classInfo = classInfo;
+        this.statsByClass();
 
         this.hitDie = classInfo.hit_die;
 
@@ -40,8 +41,6 @@ class Character {
         // Saving starting equipment?
 
         // TODO: Spell things go here
-
-        this.statsByClass();
 
     };
 
