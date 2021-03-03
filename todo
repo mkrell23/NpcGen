@@ -24,20 +24,14 @@ General Program Flow:
 
 NEXT:
 
-REWORK PROMISE CHAINS TO SOMETHING REASONABLE
-RETHINK WAY CHARACTERS ARE CONSTRUCTED
-
 Character Class:
-* Add calculated getters for things like ability bonuses
-* Generate health 
 * For each API result with a choice add ability to chose and add results to object
-* Display these properties to the user
 * Ability to chose proficiencies, spells, equipment, etc
+* Display entire character to the user
+* Add calculated getters for things like ability bonuses (is needed with how I'm doing things?)
 
 Main App:
 * Add ability to save genrated character
 * Add ability to load previous character, including button
-* Modify current event listener to listen for different button clicks
-* (Lower Priority) Build methods to hide/show character creation form
 * Add ability to add levels to character
 * (LOW PRIORITY) Add a subclass/subrace checkbox, blank to start, populated "onchange" from class/race selection
