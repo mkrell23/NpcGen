@@ -40,6 +40,49 @@ async function checkStatus(response) {
     }
   }
 
+// Function to hide the character creator form and add button to restore it
+function hideNewCharacterForm(){
+    document.getElementById('charForm').classList.add("hidden");
+    charDisplay.classList.remove("hidden");
+    saveButton.classList.remove("hidden");
+    newButton.classList.remove("hidden");
+};
+
+// Hides character display, shows new character form again
+function showNewCharacterForm() {
+    charDisplay.classList.add("hidden");
+    document.getElementById('charForm').classList.remove("hidden");
+    newButton.classList.remove("hidden");
+};
+
+// Loads a character object
+function loadCharacter() {
+    
+};
+
+// Saves a character object
+function saveCharacter() {
+    
+};
+
+function handleCreateCharacterClick(e){
+    e.preventDefault();
+    hideNewCharacterForm();    
+    createCharacter(charName.value, charRace.value, charClass.value)
+        .then(character => {
+            charDisplay.innerHTML = character.displayCharacter();
+            console.dir(character);
+        })
+        .catch(handleError);
+};
+
+
+// Do things on button clicks
+newButton.addEventListener('click', showNewCharacterForm);
+loadButton.addEventListener('click', loadCharacter);
+saveButton.addEventListener('click', saveCharacter)
+submitButton.addEventListener('click', handleCreateCharacterClick);
+
 
 /*
 // Populate our lists the lazy way:
@@ -76,36 +119,3 @@ searchApi('/api/races')
             }
         }
     });
-
-
-// Function to hide the character creator form and add button to restore it
-function hideNewCharacterForm(){
-    document.getElementById('charForm').classList.add("hidden");
-    charDisplay.classList.remove("hidden");
-    saveButton.classList.remove("hidden");
-    newButton.classList.remove("hidden");
-};
-
-// Hides character display, shows new character form again
-function showNewCharacterForm() {
-    charDisplay.classList.add("hidden");
-    document.getElementById('charForm').classList.remove("hidden");
-    newButton.classList.remove("hidden");
-};
-
-
-function handleCreateCharacterClick(e){
-    e.preventDefault();
-    hideNewCharacterForm();    
-    createCharacter(charName.value, charRace.value, charClass.value)
-        .then(character => {
-            charDisplay.innerHTML = character.displayCharacter();
-            console.dir(character);
-        })
-        .catch(handleError);
-};
-
-
-// Do things on button clicks
-newButton.addEventListener('click', showNewCharacterForm);
-submitButton.addEventListener('click', handleCreateCharacterClick);
