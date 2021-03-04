@@ -61,26 +61,37 @@ function loadCharacter() {
 };
 
 // Saves a character object
-function saveCharacter() {
-    
+function saveCharacter(character) {
+    const json = JSON.stringify(character);
+    const blob = new Blob([json], {type: "application/json"});
+    const url  = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.download    = "backup.json";
+    a.href        = url;
+    a.textContent = "Download backup.json";
 };
 
 function handleCreateCharacterClick(e){
     e.preventDefault();
     hideNewCharacterForm();    
-    createCharacter(charName.value, charRace.value, charClass.value)
+    const character = createCharacter(charName.value, charRace.value, charClass.value)
         .then(character => {
             charDisplay.innerHTML = character.displayCharacter();
             console.dir(character);
         })
         .catch(handleError);
+    
+    return character;
 };
 
 
 // Do things on button clicks
 newButton.addEventListener('click', showNewCharacterForm);
 loadButton.addEventListener('click', loadCharacter);
-saveButton.addEventListener('click', saveCharacter)
+
+// HOW TO PASS THE PROMISE TO THIS FUNCTION?????
+saveButton.addEventListener('click', saveCharacter);
 submitButton.addEventListener('click', handleCreateCharacterClick);
 
 
