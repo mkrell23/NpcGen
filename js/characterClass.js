@@ -246,6 +246,12 @@ async function createCharacter(charName, charRace, charClass){
 async function addClassLevel(character, charClass){
     // Max levels is 20
     if (character.charLevels.length < 19){
+        
+        // After First Level - Do other things
+        if (character.charLevels > 1) {
+            character.charLevels.push(charClass);
+            // TODO: ADD HEALTH
+        }
         // Function I found to count occurances in an array
         const countLevels = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
         const levelsOfClass = countLevels(character.charLevels, charClass);
