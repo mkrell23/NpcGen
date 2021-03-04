@@ -11,6 +11,7 @@ class Character {
         this.proficiencies = [];
         this.saves = [];
         this.charLevels = [charClass];
+        this.levelInfo = [];
 
         //Handle the info from the raceInfo response object
         this.raceInfo = raceInfo;
@@ -232,7 +233,9 @@ async function createCharacter(charName, charRace, charClass){
         const raceInfo = await searchApi("/api/races/" + charRace);
         const classInfo = await searchApi("/api/classes/" + charClass);
 
-        return new Character(charName, charRace, charClass, raceInfo, classInfo);
+        const character = new Character(charName, charRace, charClass, raceInfo, classInfo);
+
+        return addClassLevel(character, charClass);      
 
     } catch (error) {
         handleError(error);
@@ -241,9 +244,22 @@ async function createCharacter(charName, charRace, charClass){
 
 // Adds a level of a given class to character
 async function addClassLevel(character, charClass){
-    const classLevel = await searchApi(charClass);
+    // Max levels is 20
+    if (character.charLevels.length < 19){
+        // Function I found to count occurances in an array
+        const countLevels = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
+        const levelsOfClass = countLevels(character.charLevels, charClass);
+        const classLevel = await searchApi(`/api/classes/${charClass}/levels/${levelsOfClass}`);
 
-    // DO SOMETHING HERE
+        character.levelInfo.push(classLevel);
+
+        // TODO: FUNCTION TO PICK THINGS GOES HERE
+
+    } else{
+        throw new Error("Max level is 20");
+    };
+
+    return character;
 };
 
 
