@@ -51,8 +51,10 @@ function hideNewCharacterForm(){
 // Hides character display, shows new character form again
 function showNewCharacterForm() {
     charDisplay.classList.add("hidden");
+    saveButton.classList.add("hidden");
+    newButton.classList.add("hidden");
     document.getElementById('charForm').classList.remove("hidden");
-    newButton.classList.remove("hidden");
+
 };
 
 // Loads a character object
