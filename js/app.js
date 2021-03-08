@@ -57,7 +57,7 @@ function showNewCharacterForm() {
 
 // Loads a character object
 function loadCharacter() {
-    
+    console.log("this button is at least hooked up");
 };
 
 // Saves a character object
@@ -83,15 +83,19 @@ function handleCreateCharacterClick(e){
         .catch(handleError);
     
     return character;
+        
+};
+
+function help(e){
+    console.dir(e);
 };
 
 
-// Do things on button clicks
 newButton.addEventListener('click', showNewCharacterForm);
+// HOW TO PASS THE PROMISE TO THIS FUNCTION?????
+saveButton.addEventListener('click', help);
 loadButton.addEventListener('click', loadCharacter);
 
-// HOW TO PASS THE PROMISE TO THIS FUNCTION?????
-saveButton.addEventListener('click', saveCharacter);
 submitButton.addEventListener('click', handleCreateCharacterClick);
 
 

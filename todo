@@ -25,13 +25,14 @@ General Program Flow:
 NEXT:
 
 Character Class:
+** Mockup quick auto-picking function for now:
 * For each API result with a choice add ability to chose and add results to object
 * Ability to chose proficiencies, spells, equipment, etc
 * Display entire character to the user
 * Add calculated getters for things like ability bonuses (is needed with how I'm doing things?)
 
 Main App:
-* Add ability to save genrated character
-* Add ability to load previous character, including button
+* Add ability to save genrated character - Pass the promise in somehow...
+* Add ability to load previous character
 * Add ability to add levels to character
 * (LOW PRIORITY) Add a subclass/subrace checkbox, blank to start, populated "onchange" from class/race selection
