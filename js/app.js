@@ -8,6 +8,8 @@ const charLevel = document.getElementById('charLevel');
 const charRace = document.getElementById('charRace');
 const charDisplay = document.getElementById('charDisplay');
 
+let character;
+
 
 //Generic error handling method
 function handleError(error){
@@ -54,7 +56,6 @@ function showNewCharacterForm() {
     saveButton.classList.add("hidden");
     newButton.classList.add("hidden");
     document.getElementById('charForm').classList.remove("hidden");
-
 };
 
 // Loads a character object
@@ -69,18 +70,19 @@ function saveCharacter(character) {
     const url  = URL.createObjectURL(blob);
 
     const a = document.createElement('a');
-    a.download    = "backup.json";
+    a.download    = `${character.name}.json`;
     a.href        = url;
-    a.textContent = "Download backup.json";
+    a.textContent = `Download ${character.name}.json`;
 };
 
 function handleCreateCharacterClick(e){
     e.preventDefault();
     hideNewCharacterForm();    
-    const character = createCharacter(charName.value, charRace.value, charClass.value)
-        .then(character => {
-            charDisplay.innerHTML = character.displayCharacter();
-            console.dir(character);
+    const newCharacter = createCharacter(charName.value, charRace.value, charClass.value)
+        .then(Newcharacter => {
+            charDisplay.innerHTML = Newcharacter.displayCharacter();
+            console.dir(Newcharacter);
+            character = Newcharacter;
         })
         .catch(handleError);
     
@@ -88,16 +90,11 @@ function handleCreateCharacterClick(e){
         
 };
 
-function help(e){
-    console.dir(e);
-};
 
-
+// CONSOLIDATE THESE
 newButton.addEventListener('click', showNewCharacterForm);
-// HOW TO PASS THE PROMISE TO THIS FUNCTION?????
-saveButton.addEventListener('click', help);
+saveButton.addEventListener('click', () => saveCharacter(character));
 loadButton.addEventListener('click', loadCharacter);
-
 submitButton.addEventListener('click', handleCreateCharacterClick);
 
 
