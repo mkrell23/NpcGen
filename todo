@@ -33,8 +33,9 @@ Character Class:
 * Add calculated getters for things like ability bonuses (is needed with how I'm doing things?)
 
 Main App:
-* Add ability to save genrated character
- -- Maybe localforage? try localStorage for now.
 * Add ability to load previous character
 * Add ability to add levels to character
+* SOME SORT OF INPUT VALIDATION SO IT DOESN'T SEND BAD REQUESTS
 * (LOW PRIORITY) Add a subclass/subrace checkbox, blank to start, populated "onchange" from class/race selection
+* Look into localforage for saving? Too much?
+* Make saving and loading less clunky

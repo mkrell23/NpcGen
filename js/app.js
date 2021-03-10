@@ -42,14 +42,6 @@ async function checkStatus(response) {
     }
   }
 
-// Function to hide the character creator form and add button to restore it
-function hideNewCharacterForm(){
-    document.getElementById('charForm').classList.add("hidden");
-    charDisplay.classList.remove("hidden");
-    saveButton.classList.remove("hidden");
-    newButton.classList.remove("hidden");
-};
-
 // Hides character display, shows new character form again
 function showNewCharacterForm() {
     charDisplay.classList.add("hidden");
@@ -60,34 +52,41 @@ function showNewCharacterForm() {
 
 // Loads a character object
 function loadCharacter() {
-    console.log("this button is at least hooked up");
-
     // POPUP ALERT WITH LIST OF STORAGE KEYS
+    let alertText = 'Please enter the name of the character to load:\n Current characters saved are: \n';
+
+    for (var i = 0; i < localStorage.length; i++){
+        alertText += `${localStorage.key(i)}\n`
+    };
+    
     // ASK FOR KEY
+    const name = window.prompt(alertText);
     // LOAD KEY
+    if (name){
+        const loadedCharacter = JSON.parse(localStorage.getItem(name));
+        charDisplay.innerHTML = displayCharacter(loadedCharacter);
+    };
 };
 
 // Saves a character object
 function saveCharacter(character) {
 
-    // POPUP PROMPT FOR STORAGE NAME HERE
+    const name = window.prompt("Please type a name to save your character under:", `${character.charName}`);
 
-    localStorage.setItem(character.charName, JSON.stringify(character));
+    localStorage.setItem(name, JSON.stringify(character));
 };
 
+
 function handleCreateCharacterClick(e){
-    e.preventDefault();
-    hideNewCharacterForm();    
-    const newCharacter = createCharacter(charName.value, charRace.value, charClass.value)
+    e.preventDefault();    
+    
+    createCharacter(charName.value, charRace.value, charClass.value)
         .then(Newcharacter => {
-            charDisplay.innerHTML = Newcharacter.displayCharacter();
+            charDisplay.innerHTML = displayCharacter(Newcharacter);
             console.dir(Newcharacter);
             character = Newcharacter;
         })
-        .catch(handleError);
-    
-    return character;
-        
+        .catch(handleError); 
 };
 
 
@@ -101,6 +100,8 @@ submitButton.addEventListener('click', handleCreateCharacterClick);
 /*
 // Populate our lists the lazy way:
 */
+
+// REFACTOR THIS MESS
 
 // Classes:
 searchApi('/api/classes')
