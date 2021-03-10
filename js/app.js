@@ -61,18 +61,18 @@ function showNewCharacterForm() {
 // Loads a character object
 function loadCharacter() {
     console.log("this button is at least hooked up");
+
+    // POPUP ALERT WITH LIST OF STORAGE KEYS
+    // ASK FOR KEY
+    // LOAD KEY
 };
 
 // Saves a character object
 function saveCharacter(character) {
-    const json = JSON.stringify(character);
-    const blob = new Blob([json], {type: "application/json"});
-    const url  = URL.createObjectURL(blob);
 
-    const a = document.createElement('a');
-    a.download    = `${character.name}.json`;
-    a.href        = url;
-    a.textContent = `Download ${character.name}.json`;
+    // POPUP PROMPT FOR STORAGE NAME HERE
+
+    localStorage.setItem(character.charName, JSON.stringify(character));
 };
 
 function handleCreateCharacterClick(e){

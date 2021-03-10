@@ -34,6 +34,7 @@ Character Class:
 
 Main App:
 * Add ability to save genrated character
+ -- Maybe localforage? try localStorage for now.
 * Add ability to load previous character
 * Add ability to add levels to character
 * (LOW PRIORITY) Add a subclass/subrace checkbox, blank to start, populated "onchange" from class/race selection
