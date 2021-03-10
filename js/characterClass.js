@@ -272,7 +272,7 @@ function displayCharacter(character) {
     <div class="border-2 border-grey-500 rounded-md">Hit Points: ${character.hp}</div>
     `;
 
-    return html ;
+    charDisplay.innerHTML = html;
 };
 
 

@@ -64,14 +64,15 @@ function loadCharacter() {
     // LOAD KEY
     if (name){
         character = JSON.parse(localStorage.getItem(name));
-        charDisplay.innerHTML = displayCharacter(character);
+        displayCharacter(character);
     };
 
 };
 
-// Saves a character object
+// Saves a character object to localStorage
 function saveCharacter(character) {
 
+    // Ask for name, default is character name
     const name = window.prompt("Please type a name to save your character under:", `${character.charName}`);
 
     localStorage.setItem(name, JSON.stringify(character));
@@ -83,7 +84,7 @@ function handleCreateCharacterClick(e){
     
     createCharacter(charName.value, charRace.value, charClass.value)
         .then(Newcharacter => {
-            charDisplay.innerHTML = displayCharacter(Newcharacter);
+            displayCharacter(Newcharacter);
             console.dir(Newcharacter);
             character = Newcharacter;
         })
