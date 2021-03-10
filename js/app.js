@@ -63,9 +63,10 @@ function loadCharacter() {
     const name = window.prompt(alertText);
     // LOAD KEY
     if (name){
-        const loadedCharacter = JSON.parse(localStorage.getItem(name));
-        charDisplay.innerHTML = displayCharacter(loadedCharacter);
+        character = JSON.parse(localStorage.getItem(name));
+        charDisplay.innerHTML = displayCharacter(character);
     };
+
 };
 
 // Saves a character object
