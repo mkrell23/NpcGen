@@ -22,7 +22,7 @@ Made possible thanks to the [D&D 5th Edition API](https://www.dnd5eapi.co/)
 3. (Future feature) Chose prestige class and make other character choices
 4. (Future feature) Add levels to character
     * Levels may increase stat points, add potential spells, or give options for branching upgrade paths.
-5. (Future feature) Save and load character
+5. Save and load character - currently localStorage only
 6. (Future feature) Add more levels so the bad guy can make a comeback
 
 Currently only basic rule 5e races and classes due to copyright. Monster race characters are planned to be added
