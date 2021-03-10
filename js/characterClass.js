@@ -202,22 +202,6 @@ class Character {
     //      })
     //    }
 
-
-    // TODO: better way to do this? Short answer: yes
-    displayCharacter() {
-        const html = `<div class="border-2 border-grey-500 rounded-md">Character name: ${this.charName}</div>
-        <div class="border-2 border-grey-500 rounded-md">Character race: ${this.charRace}</div>
-        <div class="border-2 border-grey-500 rounded-md">Character class: ${this.charLevels[0]}</div>
-        <div class="border-2 border-grey-500 rounded-md">Strength: ${this.str}</div>
-        <div class="border-2 border-grey-500 rounded-md">Constitution: ${this.con}</div>
-        <div class="border-2 border-grey-500 rounded-md">Dexterity: ${this.dex}</div>
-        <div class="border-2 border-grey-500 rounded-md">Charisma: ${this.cha}</div>
-        <div class="border-2 border-grey-500 rounded-md">Intelligence: ${this.int}</div>
-        <div class="border-2 border-grey-500 rounded-md">Wisdom: ${this.wis}</div>
-        <div class="border-2 border-grey-500 rounded-md">Hit Points: ${this.hp}</div>
-        `;
-        return html ;
-    };
 };
 
 
@@ -268,6 +252,28 @@ async function addClassLevel(character, charClass){
     return character;
 };
 
+   // TODO: better way to do this? Short answer: yes
+function displayCharacter(character) {
+    // Hide the character creator form and add button to restore it
+    document.getElementById('charForm').classList.add("hidden");
+    charDisplay.classList.remove("hidden");
+    saveButton.classList.remove("hidden");
+    newButton.classList.remove("hidden");
+
+    const html = `<div class="border-2 border-grey-500 rounded-md">Character name: ${character.charName}</div>
+    <div class="border-2 border-grey-500 rounded-md">Character race: ${character.charRace}</div>
+    <div class="border-2 border-grey-500 rounded-md">Character class: ${character.charLevels[0]}</div>
+    <div class="border-2 border-grey-500 rounded-md">Strength: ${character.str}</div>
+    <div class="border-2 border-grey-500 rounded-md">Constitution: ${character.con}</div>
+    <div class="border-2 border-grey-500 rounded-md">Dexterity: ${character.dex}</div>
+    <div class="border-2 border-grey-500 rounded-md">Charisma: ${character.cha}</div>
+    <div class="border-2 border-grey-500 rounded-md">Intelligence: ${character.int}</div>
+    <div class="border-2 border-grey-500 rounded-md">Wisdom: ${character.wis}</div>
+    <div class="border-2 border-grey-500 rounded-md">Hit Points: ${character.hp}</div>
+    `;
+
+    return html ;
+};
 
 
 /*  
