@@ -5,9 +5,9 @@ class Character {
         this.str = 0;
         this.dex = 0;
         this.con = 0;
-        this.cha = 0;
-        this.wis = 0;
         this.int = 0;
+        this.wis = 0;
+        this.cha = 0;
         this.proficiencies = [];
         this.saves = [];
         this.charLevels = [charClass];
@@ -28,10 +28,16 @@ class Character {
         // Handle the info from the classInfo response object
         this.classInfo = classInfo;
         this.statsByClass();
+        this.strMod = Math.floor((this.str - 10) / 2 );
+        this.dexMod = Math.floor((this.dex - 10) / 2 );
+        this.conMod = Math.floor((this.con - 10) / 2 );
+        this.intMod = Math.floor((this.int - 10) / 2 );
+        this.wisMod = Math.floor((this.wis - 10) / 2 );
+        this.chaMod = Math.floor((this.cha - 10) / 2 );
 
         this.hitDie = classInfo.hit_die;
 
-        this.hp = this.hitDie + Math.floor((this.con- 10) / 2 );
+        this.hp = this.hitDie + this.conMod;
 
         classInfo.proficiencies.forEach(skill => this.proficiencies.push(skill));
 
@@ -263,12 +269,12 @@ function displayCharacter(character) {
     const html = `<div class="border-2 border-grey-500 rounded-md">Character name: ${character.charName}</div>
     <div class="border-2 border-grey-500 rounded-md">Character race: ${character.charRace}</div>
     <div class="border-2 border-grey-500 rounded-md">Character class: ${character.charLevels[0]}</div>
-    <div class="border-2 border-grey-500 rounded-md">Strength: ${character.str}</div>
-    <div class="border-2 border-grey-500 rounded-md">Constitution: ${character.con}</div>
-    <div class="border-2 border-grey-500 rounded-md">Dexterity: ${character.dex}</div>
-    <div class="border-2 border-grey-500 rounded-md">Charisma: ${character.cha}</div>
-    <div class="border-2 border-grey-500 rounded-md">Intelligence: ${character.int}</div>
-    <div class="border-2 border-grey-500 rounded-md">Wisdom: ${character.wis}</div>
+    <div class="border-2 border-grey-500 rounded-md">Strength: ${character.str} (Modifier ${character.strMod})</div>
+    <div class="border-2 border-grey-500 rounded-md">Dexterity: ${character.dex} (Modifier ${character.dexMod})</div>
+    <div class="border-2 border-grey-500 rounded-md">Constitution: ${character.con} (Modifier ${character.conMod})</div>
+    <div class="border-2 border-grey-500 rounded-md">Intelligence: ${character.int} (Modifier ${character.intMod})</div>
+    <div class="border-2 border-grey-500 rounded-md">Wisdom: ${character.wis} (Modifier ${character.wisMod})</div>
+    <div class="border-2 border-grey-500 rounded-md">Charisma: ${character.cha} (Modifier ${character.chaMod})</div>
     <div class="border-2 border-grey-500 rounded-md">Hit Points: ${character.hp}</div>
     `;
 
