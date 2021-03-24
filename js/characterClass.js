@@ -10,7 +10,7 @@ class Character {
         this.cha = 0;
         this.proficiencies = [];
         this.saves = [];
-        this.charLevels = [charClass];
+        this.charLevels = [];
         this.levelInfo = [];
 
         //Handle the info from the raceInfo response object
@@ -75,7 +75,7 @@ class Character {
         const charClass = this.charLevels[0];
 
         // TODO: set prop for subclass selection, branch out
-        // Stats for base classes with no subclass selected
+        // Light Cleric only class that would benefit
         switch (charClass) {
             case "barbarian":
                 this.str += abilityScores[0];
@@ -236,10 +236,9 @@ async function createCharacter(charName, charRace, charClass){
 async function addClassLevel(character, charClass){
     // Max levels is 20
     if (character.charLevels.length < 19){
-        
-        // After First Level - Do other things
-        if (character.charLevels > 1) {
-            character.charLevels.push(charClass);
+        character.charLevels.push(charClass); 
+        // After First Level - Do different things
+        if (character.charLevels.length > 1) {
             // TODO: ADD HEALTH
         }
         // Function I found to count occurances in an array
