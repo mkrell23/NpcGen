@@ -1,5 +1,5 @@
 class Character {
-    constructor(charName, charRace, charClass, raceInfo, classInfo){
+    constructor(charName, charRace){
         this.charName = charName;
         this.charRace = charRace;
         this.str = 0;
@@ -8,47 +8,10 @@ class Character {
         this.int = 0;
         this.wis = 0;
         this.cha = 0;
-        this.proficiencies = [];
+        this.proficiencies = new Set();
         this.saves = [];
         this.charLevels = [];
         this.levelInfo = [];
-
-        //Handle the info from the raceInfo response object
-        this.raceInfo = raceInfo;
-
-        raceInfo.ability_bonuses.forEach(bonus => this[bonus.ability_score.index] += bonus.bonus);
-
-        // languages?
-        
-        this.size = raceInfo.size;
-        this.speed = raceInfo.speed;
-        raceInfo.starting_proficiencies.forEach(skill => this.proficiencies.push(skill));
-        // Proficiency choice picking?
-
-        // Handle the info from the classInfo response object
-        this.classInfo = classInfo;
-        this.statsByClass();
-        this.strMod = Math.floor((this.str - 10) / 2 );
-        this.dexMod = Math.floor((this.dex - 10) / 2 );
-        this.conMod = Math.floor((this.con - 10) / 2 );
-        this.intMod = Math.floor((this.int - 10) / 2 );
-        this.wisMod = Math.floor((this.wis - 10) / 2 );
-        this.chaMod = Math.floor((this.cha - 10) / 2 );
-
-        this.hitDie = classInfo.hit_die;
-
-        this.hp = this.hitDie + this.conMod;
-
-        classInfo.proficiencies.forEach(skill => this.proficiencies.push(skill));
-
-        // TODO: function to chose proficiencies goes here
-
-        classInfo.saving_throws.forEach(save => this.saves.push(save));
-
-        // Saving starting equipment?
-
-        // TODO: Spell things go here
-
     };
 
     // Returns a total for one ability score
@@ -223,14 +186,63 @@ async function createCharacter(charName, charRace, charClass){
         const raceInfo = await searchApi("/api/races/" + charRace);
         const classInfo = await searchApi("/api/classes/" + charClass);
 
-        const character = new Character(charName, charRace, charClass, raceInfo, classInfo);
+        const character = new Character(charName, charRace);
 
-        return addClassLevel(character, charClass);      
+        // Add race things to character
+    // Info for debugging, remove later
+    character.raceInfo = raceInfo;
+
+        raceInfo.ability_bonuses.forEach(bonus => character[bonus.ability_score.index] += bonus.bonus);
+
+        // languages?
+        
+        character.size = raceInfo.size;
+        character.speed = raceInfo.speed;
+        raceInfo.starting_proficiencies.forEach(skill => character.proficiencies.add(skill));
+        // Proficiency choice picking?
+        
+
+        // Add class things to character
+        addClassLevel(character, charClass);
+
+    // More Debugging Info to remove when done
+    character.classInfo = classInfo;
+        character.statsByClass();
+        character.strMod = Math.floor((character.str - 10) / 2 );
+        character.dexMod = Math.floor((character.dex - 10) / 2 );
+        character.conMod = Math.floor((character.con - 10) / 2 );
+        character.intMod = Math.floor((character.int - 10) / 2 );
+        character.wisMod = Math.floor((character.wis - 10) / 2 );
+        character.chaMod = Math.floor((character.cha - 10) / 2 );
+
+        character.hitDie = classInfo.hit_die;
+
+        character.hp = character.hitDie + character.conMod;
+
+        classInfo.proficiencies.forEach(skill => character.proficiencies.add(skill));
+
+        // TODO: function to chose proficiencies goes here
+
+        classInfo.saving_throws.forEach(save => character.saves.push(save));
+
+        // Saving starting equipment?
+
+        // TODO: Spell things go here
+
+
+        return character;
 
     } catch (error) {
         handleError(error);
     }
 };
+
+
+function pickOptions(info) {
+
+
+}
+
 
 // Adds a level of a given class to character
 async function addClassLevel(character, charClass){
