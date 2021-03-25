@@ -197,14 +197,10 @@ async function createCharacter(charName, charRace, charClass){
     character.classInfo = classInfo;
 
         raceInfo.ability_bonuses.forEach(bonus => character[bonus.ability_score.index] += bonus.bonus);
-
-        // languages?
         
         character.size = raceInfo.size;
         character.speed = raceInfo.speed;
-        raceInfo.starting_proficiencies.forEach(skill => character.proficiencies.add(skill));
-        // Proficiency choice picking?
-        
+        raceInfo.starting_proficiencies.forEach(skill => character.proficiencies.add(skill)); 
 
         // Add class things to character
         addClassLevel(character, charClass);
@@ -217,18 +213,16 @@ async function createCharacter(charName, charRace, charClass){
         character.chaMod = Math.floor((character.cha - 10) / 2 );
 
         character.hitDie = classInfo.hit_die;
-
         character.hp = character.hitDie + character.conMod;
-
         classInfo.proficiencies.forEach(skill => character.proficiencies.add(skill));
-
-        // TODO: function to chose proficiencies goes here
-
         classInfo.saving_throws.forEach(save => character.saves.push(save));
 
-        // Saving starting equipment?
-
         // TODO: Spell things go here
+
+        console.log("Race Info choices I see:");
+        pickOptions(raceInfo);
+        console.log("Class Info choices I see:");
+        pickOptions(classInfo);
 
 
         return character;
@@ -240,8 +234,17 @@ async function createCharacter(charName, charRace, charClass){
 
 
 function pickOptions(info) {
+    const options = Object.getOwnPropertyNames(info).
+        filter(str => str.includes("_options") | str.includes("_choices"));
 
+        options.forEach( option => 
+            { // Sometimes the API has options with no choices
+                if (info[option].length > 0){
+                    console.log(info[`${option}`])
+                };               
+            });
 
+    
 }
 
 
@@ -261,7 +264,8 @@ async function addClassLevel(character, charClass){
 
         character.levelInfo.push(classLevel);
 
-        // TODO: FUNCTION TO PICK THINGS GOES HERE
+        console.log("Class level options I see:");
+        pickOptions(classLevel);
 
     } else{
         throw new Error("Max level is 20");
