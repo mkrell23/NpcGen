@@ -34,6 +34,9 @@ class Character {
     };
 
     statsByClass(){
+        if (this.charLevels.length > 1){
+            return
+        }
         const abilityScores = this.rollCharacter();
         const charClass = this.charLevels[0];
 
@@ -191,6 +194,7 @@ async function createCharacter(charName, charRace, charClass){
         // Add race things to character
     // Info for debugging, remove later
     character.raceInfo = raceInfo;
+    character.classInfo = classInfo;
 
         raceInfo.ability_bonuses.forEach(bonus => character[bonus.ability_score.index] += bonus.bonus);
 
@@ -204,9 +208,6 @@ async function createCharacter(charName, charRace, charClass){
 
         // Add class things to character
         addClassLevel(character, charClass);
-
-    // More Debugging Info to remove when done
-    character.classInfo = classInfo;
         character.statsByClass();
         character.strMod = Math.floor((character.str - 10) / 2 );
         character.dexMod = Math.floor((character.dex - 10) / 2 );
