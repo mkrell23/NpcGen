@@ -243,9 +243,15 @@ function pickOptions(info) {
                     console.log(info[`${option}`])
                 };               
             });
+};
 
+function showChoices(option) {
+    charDisplay.classList.remove("hidden");
+    let html = "<h3>MAKE SOME CHOICES</h3> ";
     
-}
+
+    charDisplay.innerHTML = html;
+};
 
 
 // Adds a level of a given class to character
