@@ -222,11 +222,7 @@ async function createCharacter(charName, charRace, charClass){
     }
 };
 
-function calculateMod(stat) {
-    return Math.floor((stat - 10) / 2 );
-};
-
-
+const calculateMod = (stat) => Math.floor((stat - 10) / 2 );
 
 function pickOptions(info) {
     const strOptions = Object.getOwnPropertyNames(info).
@@ -322,9 +318,7 @@ function displayCharacter(character) {
 */
 
 // Simple Dice Roller
-function rollD(diceSides) {
-    return Math.floor(Math.random() * diceSides) + 1
-};
+const rollD = diceSides => Math.floor(Math.random() * diceSides) + 1;
 
 // Removes lovest number from array, returns array sorted low to high
 function removeLowest(rolls) {
