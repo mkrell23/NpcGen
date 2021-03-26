@@ -164,16 +164,6 @@ class Character {
         return this;
     };
 
-    // TODO:
-    //  function to chose class things goes here (classResponse) {
-    //      startingEquipment = response.starting_equipment_options
-    //      startingEquipment.foreach(choice => {
-    //          numberOfChoices = choice.choose
-    //          display the choice.from[{options}, {options}]
-    //          push choices to character object
-    //      })
-    //    }
-
 };
 
 
@@ -205,12 +195,12 @@ async function createCharacter(charName, charRace, charClass){
         // Add class things to character
         addClassLevel(character, charClass);
         character.statsByClass();
-        character.strMod = Math.floor((character.str - 10) / 2 );
-        character.dexMod = Math.floor((character.dex - 10) / 2 );
-        character.conMod = Math.floor((character.con - 10) / 2 );
-        character.intMod = Math.floor((character.int - 10) / 2 );
-        character.wisMod = Math.floor((character.wis - 10) / 2 );
-        character.chaMod = Math.floor((character.cha - 10) / 2 );
+        character.strMod = calculateMod(character.str);
+        character.dexMod = calculateMod(character.dex);
+        character.conMod = calculateMod(character.con);
+        character.intMod = calculateMod(character.int);
+        character.wisMod = calculateMod(character.wis);
+        character.chaMod = calculateMod(character.cha);
 
         character.hitDie = classInfo.hit_die;
         character.hp = character.hitDie + character.conMod;
@@ -232,25 +222,48 @@ async function createCharacter(charName, charRace, charClass){
     }
 };
 
-
-function pickOptions(info) {
-    const options = Object.getOwnPropertyNames(info).
-        filter(str => str.includes("_options") | str.includes("_choices"));
-
-        options.forEach( option => 
-            { // Sometimes the API has options with no choices
-                if (info[option].length > 0){
-                    console.log(info[`${option}`])
-                };               
-            });
+function calculateMod(stat) {
+    return Math.floor((stat - 10) / 2 );
 };
 
-function showChoices(option) {
+
+
+function pickOptions(info) {
+    const strOptions = Object.getOwnPropertyNames(info).
+        filter(str => str.includes("_options") | str.includes("_choices"));
+    
+    const options = strOptions.map(option => info[option]);
+
+        //console.log(options);
+        if (info.name){
+            options.forEach( option => 
+                { // Sometimes the API has options with no choices
+                    console.log(`For ${info.name} `);
+                    console.log(option);
+                    //randomChoices(info[option]);
+                });
+        } else { console.log("none");};               
+};
+
+function showChoices(options) {
     charDisplay.classList.remove("hidden");
     let html = "<h3>MAKE SOME CHOICES</h3> ";
     
 
     charDisplay.innerHTML = html;
+};
+
+function randomChoices(options) {
+    options.forEach( option => {
+        let picks = option.choose;
+        let choices = option.from;
+
+        let display = `Pick ${picks} from: `;
+
+        choices.forEach( choice => display += `${choice.name}, `);
+
+        console.log(display);
+    });
 };
 
 
