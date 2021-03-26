@@ -230,14 +230,14 @@ function calculateMod(stat) {
 
 function pickOptions(info) {
     const strOptions = Object.getOwnPropertyNames(info).
-        filter(str => str.includes("_options") | str.includes("_choices"));
+        filter(str => str.includes("_options") || str.includes("_choices"));
     
     const options = strOptions.map(option => info[option]);
 
-        //console.log(options);
-        if (info.name){
+        // Sometimes the API has options with no choices
+        if (options.length > 0){
             options.forEach( option => 
-                { // Sometimes the API has options with no choices
+                { 
                     console.log(`For ${info.name} `);
                     console.log(option);
                     //randomChoices(info[option]);
