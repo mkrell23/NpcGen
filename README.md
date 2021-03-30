@@ -19,10 +19,10 @@ Made possible thanks to the [D&D 5th Edition API](https://www.dnd5eapi.co/)
     * Rolls dice, and distributes them as above.
 2. Select desired race
     * Race adds certain bonuses and effects such as movement in a turn and abilities like darkvision.
-3. (Future feature) Chose prestige class and make other character choices
-4. (Future feature) Add levels to character
-    * Levels may increase stat points, add potential spells, or give options for branching upgrade paths.
-5. Save and load character - currently localStorage only
+3. Save and load character - currently localStorage only
+4. (Future feature) Chose prestige class and make other character choices
+5. (Future feature) Add levels to character
+    * Levels may increase stat points, add potential spells, or give options for branching upgrade paths. 
 6. (Future feature) Add more levels so the bad guy can make a comeback
 
 Currently only basic rule 5e races and classes due to copyright. Monster race characters are planned to be added
@@ -38,9 +38,9 @@ Project requirements met:
 * Create an array, dictionary or list, populate it with multiple values, retrieve at least one value, and use or display it in your application
     * The rollCharacter() method in characterClass.js calls the statRoll() method in the same file. Both of these use and modify an array and return the values to another function
 * Create and use a function that accepts two or more values (parameters), calculates or determines a new value based on those inputs, and returns a new value
-    * The constructor method for the Character class takes three parameters: the character's name, race, and class
+    * The factory function for the Character class (createCharacter) takes three parameters: the character's name, race, and class
 
 Instructions to Run:
 * [Click Here](https://mkrell23.github.io/NpcGen/) to see it on GitHub Pages
 * Download files, start webserver in directory, launch Chrome.
-    * I usually use `python3 -m http.server 8080 --bind 127.0.0.1`
+    * ie. `python3 -m http.server 8080 --bind 127.0.0.1`
